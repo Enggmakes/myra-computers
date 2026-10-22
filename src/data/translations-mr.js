@@ -179,6 +179,8 @@ export const mrUI = {
   "contact_phone_label": "फोन व व्हॉट्सॲप",
   "contact_email_label": "ईमेल",
   "contact_hours_label": "केंद्राची वेळ",
+  "map_counter_pin_note": "जांबूत बुद्रुक (खटपट नाक्याजवळ), संगमनेर — ४२२६२२",
+  "open_in_google_maps": "Google Maps वर दिशा मार्ग पहा &rarr;",
 
   // Footer
   "footer_tagline": "शासन सेवा, बँकिंग आणि तंत्रज्ञान — एकाच केंद्रावरून विश्वासार्ह सेवा.",

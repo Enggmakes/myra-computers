@@ -73,6 +73,12 @@
           "postalCode": "422622",
           "addressCountry": "IN"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 19.3128,
+          "longitude": 74.2674
+        },
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=Amayra+Computer+And+Central+Bank+Jambut+Bk+Sangamner",
         "openingHoursSpecification": [
           { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:30", "closes": "20:00" },
           { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "20:00" },
@@ -1126,14 +1132,30 @@
                 </dl>
               </div>
 
-              <div class="mt-6 overflow-hidden rounded-lg border border-slate-200">
+              <div class="mt-6 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
                 <iframe
-                  class="block h-64 w-full grayscale-[0.35]"
-                  title="Map showing the Amayra Computers counter in Jambut Bk, Sangamner"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=74.150%2C19.530%2C74.250%2C19.620&amp;layer=mapnik&amp;marker=19.5760%2C74.2070"
+                  class="block h-72 w-full border-0"
+                  title="Map showing Amayra Computer And Central Bank of India counter in Jambut Bk, Sangamner"
+                  src="https://www.google.com/maps/embed?origin=mfe&amp;pb=!1m3!2m1!1sAmayra+Computer+And+Central+Bank+Jambut+Bk+Sangamner!6i15"
                   loading="lazy"
-                  referrerpolicy="no-referrer"
+                  allowfullscreen
                 ></iframe>
+                <div class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 bg-white px-3.5 py-2.5 text-xs text-slate-600">
+                  <span class="inline-flex items-center gap-1.5 font-medium">
+                    <svg class="h-4 w-4 text-red-500 flex-none" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                    </svg>
+                    <span data-i18n="map_counter_pin_note">Jambut Bk (Near Khatpat Naka), Sangamner — 422622</span>
+                  </span>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Amayra+Computer+And+Central+Bank+Jambut+Bk+Sangamner"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 font-semibold text-saffron-600 hover:text-saffron-700 hover:underline transition-colors"
+                  >
+                    <span data-i18n="open_in_google_maps">Open in Google Maps &rarr;</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
