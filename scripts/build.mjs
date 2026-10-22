@@ -29,7 +29,8 @@ const esc = (s) =>
 const ico = (name, cls = "icon") => {
   const body = icons[name];
   if (!body) throw new Error(`Unknown icon: ${name}`);
-  return `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${body}</svg>`;
+  const size = cls.includes("icon-lg") ? "24" : "20";
+  return `<svg class="${cls}" width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${body}</svg>`;
 };
 
 /* ------------------------------------------------------------------ */
