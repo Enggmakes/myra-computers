@@ -121,7 +121,11 @@ function hydrateIcons(root = document) {
     const name = el.dataset.icon;
     const body = ICONS[name];
     if (!body) return;
-    el.innerHTML = `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+    el.style.display = "inline-flex";
+    el.style.alignItems = "center";
+    el.style.justifyContent = "center";
+    el.style.verticalAlign = "middle";
+    el.innerHTML = `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
     el.dataset.iconDone = "1";
   });
 }

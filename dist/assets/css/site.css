@@ -530,6 +530,9 @@
   .h-\[4\.5rem\] {
     height: 4.5rem;
   }
+  .h-full {
+    height: 100%;
+  }
   .max-h-\[22rem\] {
     max-height: 22rem;
   }
@@ -1304,6 +1307,9 @@
   .pt-6 {
     padding-top: calc(var(--spacing) * 6);
   }
+  .pt-\[1px\] {
+    padding-top: 1px;
+  }
   .pr-2 {
     padding-right: calc(var(--spacing) * 2);
   }
@@ -1771,6 +1777,10 @@
     color: var(--color-white);
   }
   @media (hover: hover) {
+    .group-hover\:translate-x-0\.5:is(:where(.group):hover *) {
+      --tw-translate-x: calc(var(--spacing) * 0.5);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
     .group-hover\:scale-110:is(:where(.group):hover *) {
       --tw-scale-x: 110%;
       --tw-scale-y: 110%;
@@ -2284,6 +2294,10 @@
 }
 @layer components {
   .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
     width: 1em;
     height: 1em;
     flex: none;
@@ -2292,6 +2306,11 @@
     stroke-width: 1.75;
     stroke-linecap: round;
     stroke-linejoin: round;
+  }
+  .icon > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   .icon-lg {
     width: 1.5em;
