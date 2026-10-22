@@ -592,7 +592,16 @@ function footerHoursHtml() {
 /* Assemble                                                            */
 /* ------------------------------------------------------------------ */
 
+// Production Inlined Assets for 100% fail-proof rendering everywhere
+const cssPath = resolve(ROOT, "assets/css/site.css");
+const jsPath = resolve(ROOT, "assets/js/site.js");
+const cssContent = await readFile(cssPath, "utf8");
+const jsContent = await readFile(jsPath, "utf8");
+const inlinedCss = cssContent.replace(/\.\.\/fonts\//g, "/assets/fonts/");
+
 const slots = {
+  INLINE_CSS: `<style id="app-styles">\n${inlinedCss}\n</style>`,
+  INLINE_JS: `<script id="app-script">\n${jsContent}\n</script>`,
   MEGA_DIVISIONS: megaDivisions(),
   MEGA_HOURS: megaHours(),
   MOBILE_DIVISIONS: mobileDivisions(),

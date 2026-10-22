@@ -22,8 +22,13 @@
     <meta name="build-version" content="dist-production-v2" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
     <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!--@SLOT:INLINE_CSS-->
     <link rel="stylesheet" href="/assets/css/site.css" />
     <style>
       /* Critical SVG containment fallback so icons never expand without CSS */
@@ -1195,6 +1200,6 @@
       </div>
     </footer>
 
-    <script defer src="/assets/js/site.js"></script>
+    <!--@SLOT:INLINE_JS-->
   </body>
 </html>
