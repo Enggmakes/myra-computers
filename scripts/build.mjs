@@ -8,7 +8,7 @@
  * generated markup. Copy that should survive catalogue edits lives in the
  * template itself; copy that is derived from the catalogue lives here.
  */
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, cp, mkdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { divisions, services, servicesByDivision, documentsChecklist, company, legal } from "../src/data/catalog.js";
@@ -655,3 +655,12 @@ html = html.replace(
 await writeFile(OUT, html, "utf8");
 console.log(`Built ${OUT}`);
 console.log(`  ${services.length} services across ${divisions.length} divisions`);
+
+const DIST = resolve(ROOT, "dist");
+await mkdir(DIST, { recursive: true });
+await writeFile(resolve(DIST, "index.html"), html, "utf8");
+await cp(resolve(ROOT, "assets"), resolve(DIST, "assets"), { recursive: true });
+await cp(resolve(ROOT, "hero.png"), resolve(DIST, "hero.png"));
+await cp(resolve(ROOT, "hero_vertical.png"), resolve(DIST, "hero_vertical.png"));
+await cp(resolve(ROOT, "footer.png"), resolve(DIST, "footer.png"));
+console.log(`Prepared distribution in ${DIST}`);
