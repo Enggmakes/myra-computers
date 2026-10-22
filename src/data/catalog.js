@@ -82,8 +82,8 @@ export const divisions = [
   },
   {
     "id": "payments",
-    "name": "Money Transfer & Payments — Central Mini Bank",
-    "shortName": "Central Mini Bank",
+    "name": "Money Transfer & Payments",
+    "shortName": "Payments",
     "icon": "wallet",
     "blurb": "Authorised Central Bank of India Customer Service Point (CSP) & Mini Bank counter. Cash deposits, withdrawals, AePS biometric micro-ATM, NEFT/IMPS transfers, and merchant settlement.",
     "theme": {
