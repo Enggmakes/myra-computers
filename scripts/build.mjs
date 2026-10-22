@@ -597,10 +597,20 @@ const cssPath = resolve(ROOT, "assets/css/site.css");
 const jsPath = resolve(ROOT, "assets/js/site.js");
 const cssContent = await readFile(cssPath, "utf8");
 const jsContent = await readFile(jsPath, "utf8");
+
+const toBase64 = async (path, mime) => {
+  const buf = await readFile(path);
+  return `data:${mime};base64,${buf.toString("base64")}`;
+};
+
+const heroVerticalB64 = await toBase64(resolve(ROOT, "hero_vertical.webp"), "image/webp");
+const heroB64 = await toBase64(resolve(ROOT, "hero.webp"), "image/webp");
+const footerB64 = await toBase64(resolve(ROOT, "footer.webp"), "image/webp");
+
 const inlinedCss = cssContent
   .replace(/\.\.\/fonts\//g, "/assets/fonts/")
-  .replace(/url\(['"]?\.\.\/\.\.\/hero_vertical\.png['"]?\)/g, "url('hero_vertical.png')")
-  .replace(/url\(['"]?\.\.\/\.\.\/hero\.png['"]?\)/g, "url('hero.png')");
+  .replace(/url\(['"]?(?:\.\.\/\.\.\/)?hero_vertical\.png['"]?\)/g, `url('${heroVerticalB64}')`)
+  .replace(/url\(['"]?(?:\.\.\/\.\.\/)?hero\.png['"]?\)/g, `url('${heroB64}')`);
 
 const slots = {
   INLINE_CSS: `<style id="app-styles">\n${inlinedCss}\n</style>`,
@@ -663,6 +673,11 @@ html = html.replace(
     }))
   )}`
 );
+
+// Guarantee 100% immediate background artwork visibility with zero HTTP requests
+html = html.replace(/url\(['"]?footer\.png['"]?\)/g, `url('${footerB64}')`);
+html = html.replace(/url\(['"]?hero_vertical\.png['"]?\)/g, `url('${heroVerticalB64}')`);
+html = html.replace(/url\(['"]?hero\.png['"]?\)/g, `url('${heroB64}')`);
 
 await writeFile(OUT, html, "utf8");
 console.log(`Built ${OUT}`);
