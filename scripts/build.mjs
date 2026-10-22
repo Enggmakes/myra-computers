@@ -12,6 +12,15 @@ import { readFile, writeFile, cp, mkdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { divisions, services, servicesByDivision, documentsChecklist, company, legal } from "../src/data/catalog.js";
+import {
+  mrUI,
+  mrDivisions,
+  mrServices,
+  mrDocumentsChecklist,
+  mrProcessSteps,
+  mrProcessNotes,
+  mrFaq,
+} from "../src/data/translations-mr.js";
 import { icons } from "../assets/js/icons.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -185,10 +194,10 @@ function mobileDivisions() {
       const iconHtml = isPayments
         ? `<img src="${centralLogoB64}" alt="" class="h-4 w-4 object-contain inline-block flex-none" />`
         : ico(d.icon);
-      return `<li><a href="#${d.id}" class="flex items-center gap-2 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/20 px-3 py-2.5 font-display text-[0.8125rem] font-medium text-[#F5F0E3] transition-all hover:border-[#D6B36A] hover:text-[#D6B36A]" data-mobile-nav-close><span class="text-[#D6B36A] flex-none">${iconHtml}</span><span class="truncate">${esc(d.shortName)}</span></a></li>`;
+      return `<li><a href="#${d.id}" class="flex items-center gap-2 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/20 px-3 py-2.5 font-display text-[0.8125rem] font-medium text-[#F5F0E3] transition-all hover:border-[#D6B36A] hover:text-[#D6B36A]" data-mobile-nav-close data-mobile-div="${d.id}"><span class="text-[#D6B36A] flex-none">${iconHtml}</span><span class="truncate mobile-div-name">${esc(d.shortName)}</span></a></li>`;
     });
   items.push(
-    `<li><a href="#services" class="flex items-center justify-between rounded-lg bg-[#D6B36A]/15 border border-[#D6B36A]/40 px-3 py-2.5 font-display text-[0.8125rem] font-bold text-[#D6B36A] transition-all hover:bg-[#D6B36A] hover:text-[#071C19]" data-mobile-nav-close><span>All Services</span><span class="text-xs">86 →</span></a></li>`
+    `<li><a href="#services" class="flex items-center justify-between rounded-lg bg-[#D6B36A]/15 border border-[#D6B36A]/40 px-3 py-2.5 font-display text-[0.8125rem] font-bold text-[#D6B36A] transition-all hover:bg-[#D6B36A] hover:text-[#071C19]" data-mobile-nav-close><span data-i18n="nav_services">All Services</span><span class="text-xs" data-i18n="nav_all_services_badge">86 →</span></a></li>`
   );
   return items.join("\n");
 }
@@ -200,18 +209,18 @@ function heroIndex() {
       const isHttp = s.portalUrl && s.portalUrl.startsWith("http");
       const badgeText = s.badgeText || (d ? d.shortName : "OFFICIAL");
       const shortBadge = d ? d.shortName : "GOVT";
-      return `<li>
+      return `<li data-hero-svc="${s.id}">
         <a href="${s.portalUrl || `#service-${s.id}`}" 
            ${isHttp ? 'target="_blank" rel="noopener noreferrer"' : ''}
            class="group flex items-center justify-between gap-2.5 px-4 sm:px-5 py-2.5 transition-colors hover:bg-[#0c2b27]/80">
           <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <span class="text-[#8FB7AE] transition-colors group-hover:text-[#D6B36A] flex-none">${ico(s.icon)}</span>
-            <span class="truncate font-display text-[0.8125rem] sm:text-[0.875rem] font-medium text-[#F5F0E3] transition-colors group-hover:text-white">${esc(
+            <span class="truncate font-display text-[0.8125rem] sm:text-[0.875rem] font-medium text-[#F5F0E3] transition-colors group-hover:text-white hero-svc-name">${esc(
               s.name
             )}</span>
           </div>
           <div class="inline-flex items-center gap-1.5 sm:gap-2 flex-none">
-            <span class="hidden sm:inline-block rounded bg-[#F5F0E3] text-[#071C19] px-2 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wider max-w-[130px] truncate">${esc(
+            <span class="hidden sm:inline-block rounded bg-[#F5F0E3] text-[#071C19] px-2 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wider max-w-[130px] truncate hero-svc-badge">${esc(
               badgeText
             )}</span>
             <span class="sm:hidden rounded bg-[#F5F0E3]/15 text-[#D6B36A] border border-[#D6B36A]/30 px-1.5 py-0.5 text-[0.625rem] font-bold uppercase tracking-wider">${esc(
@@ -238,15 +247,13 @@ function divisionStrip() {
         ? "bg-white border border-red-200 shadow-xs"
         : (theme.badgeClass || "bg-slate-100 text-slate-700");
       const titleHtml = isPayments
-        ? `Money Transfer &amp; Payments<span class="block text-[0.75rem] text-red-600 font-bold tracking-tight">Central Mini Bank</span>`
-        : esc(d.name);
+        ? `<span class="div-strip-name">Money Transfer &amp; Payments</span><span class="block text-[0.75rem] text-red-600 font-bold tracking-tight div-strip-sub">Central Mini Bank</span>`
+        : `<span class="div-strip-name">${esc(d.name)}</span>`;
       return `<li>
-        <a href="#${d.id}" class="group flex flex-col gap-2 p-3.5 rounded-lg border border-transparent hover:border-slate-200 hover:bg-white hover:shadow-sm transition-all">
+        <a href="#${d.id}" class="group flex flex-col gap-2 p-3.5 rounded-lg border border-transparent hover:border-slate-200 hover:bg-white hover:shadow-sm transition-all" data-div-strip="${d.id}">
           <span class="grid h-10 w-10 place-items-center rounded-lg ${badgeCls} transition-transform group-hover:scale-110">${iconHtml}</span>
           <span class="font-display text-[0.9375rem] font-bold leading-snug text-ink-900 group-hover:text-signal-600">${titleHtml}</span>
-          <span class="nums text-[0.8125rem] font-medium text-slate-500">${count} service${
-            count === 1 ? "" : "s"
-          }</span>
+          <span class="nums text-[0.8125rem] font-medium text-slate-500"><span class="div-strip-count-num">${count}</span> <span class="div-strip-count-text">services</span></span>
         </a>
       </li>`;
     })
@@ -269,46 +276,48 @@ function serviceTile(s) {
   const d = divisionById.get(s.division);
   const badgeCls = d?.theme?.badgeClass || "badge-gov";
   const isHttp = s.portalUrl && s.portalUrl.startsWith("http");
+  const mr = mrServices[s.id] || {};
+  const mrDiv = mrDivisions[s.division] || {};
 
   return `<article class="svc min-w-0" id="service-${s.id}" data-service="${s.id}" data-division="${d.id}" data-division-name="${esc(d.shortName)}" data-name="${esc(
     s.name.toLowerCase()
-  )}" data-display-name="${esc(s.name)}" data-portal-url="${esc(s.portalUrl || '')}" data-action-label="${esc(s.actionLabel || `Open ${s.portalName || s.name}`)}" data-badge="${esc(s.badgeText || d.shortName)}" data-badge-class="${badgeCls}" data-service-icon="${s.icon}" data-desc="${esc(s.desc)}" data-keywords="${esc([s.name, s.sourceRef || "", s.desc, s.audience, s.portalName || "", s.badgeText || "", ...(s.keywords || [])].join(" ").toLowerCase())}">
+  )}" data-display-name="${esc(s.name)}" data-portal-url="${esc(s.portalUrl || '')}" data-action-label="${esc(s.actionLabel || `Open ${s.portalName || s.name}`)}" data-badge="${esc(s.badgeText || d.shortName)}" data-badge-class="${badgeCls}" data-service-icon="${s.icon}" data-desc="${esc(s.desc)}" data-keywords="${esc([s.name, s.sourceRef || "", s.desc, s.audience, s.portalName || "", s.badgeText || "", ...(s.keywords || [])].join(" ").toLowerCase())}" data-mr-name="${esc(mr.name || '')}" data-mr-desc="${esc(mr.desc || '')}" data-mr-audience="${esc(mr.audience || '')}" data-mr-badge="${esc(mr.badgeText || mrDiv.shortName || '')}" data-mr-action="${esc(mr.actionLabel || '')}" data-mr-portal="${esc(mr.portalName || '')}" data-mr-keywords="${esc((mr.keywords || []).join(' ').toLowerCase())}">
   <div class="flex items-start justify-between gap-2.5 sm:gap-3 min-w-0">
     <span class="svc-icon flex-none" aria-hidden="true">${ico(s.icon)}</span>
     <div class="flex flex-col items-end gap-1 min-w-0 text-right">
-      <span class="rounded px-2 py-0.5 text-[0.65rem] sm:text-[0.6875rem] font-bold uppercase tracking-[0.05em] truncate max-w-[140px] sm:max-w-none ${badgeCls}">${esc(
+      <span class="svc-badge rounded px-2 py-0.5 text-[0.65rem] sm:text-[0.6875rem] font-bold uppercase tracking-[0.05em] truncate max-w-[140px] sm:max-w-none ${badgeCls}">${esc(
         s.badgeText || d.shortName
       )}</span>
-      <span class="text-[0.65rem] sm:text-[0.6875rem] font-semibold uppercase tracking-[0.09em] text-slate-400">${esc(
+      <span class="svc-div-name text-[0.65rem] sm:text-[0.6875rem] font-semibold uppercase tracking-[0.09em] text-slate-400">${esc(
         d.shortName
       )}</span>
     </div>
   </div>
-  <h3 class="text-[1rem] sm:text-[1.0625rem] font-bold leading-snug text-ink-950 mt-1">${esc(s.name)}</h3>
-  <p class="text-[0.875rem] sm:text-[0.9375rem] leading-relaxed text-slate-600">${esc(s.desc)}</p>
-  <p class="mt-0.5 text-[0.78125rem] sm:text-[0.8125rem] leading-relaxed text-slate-500"><span class="font-semibold text-slate-700">For:</span> ${esc(
+  <h3 class="svc-name text-[1rem] sm:text-[1.0625rem] font-bold leading-snug text-ink-950 mt-1">${esc(s.name)}</h3>
+  <p class="svc-desc text-[0.875rem] sm:text-[0.9375rem] leading-relaxed text-slate-600">${esc(s.desc)}</p>
+  <p class="svc-audience mt-0.5 text-[0.78125rem] sm:text-[0.8125rem] leading-relaxed text-slate-500"><span class="font-semibold text-slate-700" data-i18n="cat_for_label">For:</span> <span class="svc-audience-text">${esc(
     s.audience
-  )}</p>
+  )}</span></p>
   
   <div class="mt-auto pt-4 flex flex-col gap-2">
     <a href="${esc(s.portalUrl || '#contact')}"
        ${isHttp ? 'target="_blank" rel="noopener noreferrer"' : ''}
        class="portal-action-btn portal-btn-${d.id}"
        data-service-link="${s.id}">
-      <span class="truncate">${esc(s.actionLabel || `Open ${s.portalName || s.name}`)}</span>
+      <span class="svc-action-label truncate">${esc(s.actionLabel || `Open ${s.portalName || s.name}`)}</span>
       <span class="icon flex-none" aria-hidden="true">${ico(isHttp ? 'arrow-up-right' : 'arrow-right')}</span>
     </a>
     <div class="flex items-center justify-between text-[0.75rem] text-slate-500 pt-1 border-t border-slate-100 gap-2">
       <span class="inline-flex items-center gap-1.5 font-medium text-slate-600 truncate min-w-0">
         <span class="h-1.5 w-1.5 rounded-full flex-none ${s.isGov ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}"></span>
-        <span class="truncate">${esc(s.portalName || 'Sangamner Desk')}</span>
+        <span class="svc-portal-name truncate">${esc(s.portalName || 'Sangamner Desk')}</span>
       </span>
       <a href="https://wa.me/919766174974?text=${encodeURIComponent(`Hello Amayra Computers, I need assistance at the counter with: ${s.name}`)}"
          target="_blank" rel="noopener noreferrer"
          class="inline-flex items-center gap-1 text-slate-500 hover:text-emerald-700 font-medium transition-colors flex-none"
          title="Need help? Ask counter desk on WhatsApp"
          data-service-preset="${s.id}">
-        <span>Counter help</span>
+        <span class="svc-counter-help" data-i18n="cat_counter_help">Counter help</span>
         <span class="icon text-[0.7rem]" aria-hidden="true">${ico('phone')}</span>
       </a>
     </div>
@@ -333,15 +342,15 @@ function serviceIndex() {
       const headerContent = isPayments
         ? `<div>
             <h3 class="text-[1.35rem] sm:text-[1.5rem] font-bold tracking-tight text-ink-950 flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span>Money Transfer &amp; Payments</span>
+              <span class="div-head-title">Money Transfer &amp; Payments</span>
               <span class="text-slate-300 font-light hidden sm:inline">|</span>
-              <span class="text-red-700">Central Mini Bank</span>
+              <span class="text-red-700 div-head-sub">Central Mini Bank</span>
             </h3>
-            <span class="text-[0.75rem] font-semibold uppercase tracking-wider text-slate-500">Payments Division</span>
+            <span class="text-[0.75rem] font-semibold uppercase tracking-wider text-slate-500 div-head-branch">Payments Division</span>
           </div>`
         : `<div>
-            <h3 class="text-[1.35rem] font-bold tracking-tight text-ink-950">${esc(d.name)}</h3>
-            <span class="text-[0.75rem] font-semibold uppercase tracking-wider text-slate-500">${esc(d.shortName)} Division</span>
+            <h3 class="text-[1.35rem] font-bold tracking-tight text-ink-950 div-head-title">${esc(d.name)}</h3>
+            <span class="text-[0.75rem] font-semibold uppercase tracking-wider text-slate-500 div-head-branch">${esc(d.shortName)} Division</span>
           </div>`;
 
       return `<section id="${d.id}" class="scroll-mt-28" data-division-group="${d.id}">
@@ -351,13 +360,11 @@ function serviceIndex() {
       ${headerContent}
     </div>
     <div class="flex items-center gap-3">
-      <span class="rounded-full bg-slate-100 px-3 py-1 font-display text-[0.8125rem] font-bold text-slate-700">${d.services.length} service${
-        d.services.length === 1 ? "" : "s"
-      }</span>
-      <a href="#services" class="text-[0.8125rem] font-semibold text-slate-500 hover:text-ink-900 transition-colors">↑ Top</a>
+      <span class="rounded-full bg-slate-100 px-3 py-1 font-display text-[0.8125rem] font-bold text-slate-700"><span class="div-count-num">${d.services.length}</span> <span class="div-count-text">services</span></span>
+      <a href="#services" class="text-[0.8125rem] font-semibold text-slate-500 hover:text-ink-900 transition-colors" data-i18n="cat_top">↑ Top</a>
     </div>
   </div>
-  <p class="mt-3.5 max-w-2xl text-[0.9375rem] leading-relaxed text-slate-600">${esc(d.blurb)}</p>
+  <p class="division-blurb mt-3.5 max-w-2xl text-[0.9375rem] leading-relaxed text-slate-600">${esc(d.blurb)}</p>
   <div class="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">${d.services
     .map(serviceTile)
     .join("\n")}</div>
@@ -368,37 +375,37 @@ function serviceIndex() {
 
 function documentsDeskHtml() {
   return documentsChecklist
-    .map((cat) => {
+    .map((cat, catIdx) => {
       const cards = cat.services
-        .map((item) => `
-          <div class="rounded-lg border border-slate-200 bg-white p-6 flex flex-col shadow-sm transition-all hover:shadow-md hover:border-slate-300">
+        .map((item, itemIdx) => `
+          <div class="rounded-lg border border-slate-200 bg-white p-6 flex flex-col shadow-sm transition-all hover:shadow-md hover:border-slate-300" data-doc-card="${catIdx}-${itemIdx}">
             <div class="flex items-start justify-between gap-2 border-b border-slate-100 pb-3">
               <div>
-                <h4 class="font-display text-[1rem] font-bold text-ink-900">${esc(item.name)}</h4>
-                <p class="text-[0.8125rem] text-slate-500 mt-0.5">Portal: <strong class="text-slate-700">${esc(item.portal)}</strong></p>
+                <h4 class="doc-card-title font-display text-[1rem] font-bold text-ink-900">${esc(item.name)}</h4>
+                <p class="text-[0.8125rem] text-slate-500 mt-0.5">Portal: <strong class="doc-card-portal text-slate-700">${esc(item.portal)}</strong></p>
               </div>
               <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500 flex-none mt-1 animate-pulse"></span>
             </div>
             <div class="mt-4 flex-1">
-              <p class="text-[0.75rem] font-bold uppercase tracking-wider text-slate-500">Checklist to bring:</p>
-              <ul class="mt-2 space-y-2 text-[0.84rem] text-slate-700">
+              <p class="text-[0.75rem] font-bold uppercase tracking-wider text-slate-500" data-i18n="docs_checklist_label">Checklist to bring:</p>
+              <ul class="doc-card-reqs mt-2 space-y-2 text-[0.84rem] text-slate-700">
                 ${item.requirements.map((r) => `<li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-none">✓</span><span>${esc(r)}</span></li>`).join("")}
               </ul>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-100 flex flex-col gap-1.5 text-[0.8125rem]">
               <div class="flex items-center justify-between text-slate-500">
-                <span class="font-medium text-slate-600">Copies:</span>
-                <span class="text-slate-800 font-semibold">${esc(item.copies)}</span>
+                <span class="font-medium text-slate-600" data-i18n="docs_copies_label">Copies:</span>
+                <span class="doc-card-copies text-slate-800 font-semibold">${esc(item.copies)}</span>
               </div>
               <div class="flex items-center justify-between text-slate-500">
-                <span class="font-medium text-slate-600">Turnaround:</span>
-                <span class="text-slate-800 font-semibold">${esc(item.counterTurnaround)}</span>
+                <span class="font-medium text-slate-600" data-i18n="docs_turnaround_label">Turnaround:</span>
+                <span class="doc-card-turnaround text-slate-800 font-semibold">${esc(item.counterTurnaround)}</span>
               </div>
             </div>
             <div class="mt-5 pt-2">
               <a href="${esc(item.portalUrl)}" target="_blank" rel="noopener noreferrer" 
                  class="portal-action-btn portal-btn-government w-full">
-                <span>Open ${esc(item.portal)}</span>
+                <span class="doc-card-btn-text">Open ${esc(item.portal)}</span>
                 <span class="icon flex-none" aria-hidden="true">${ico('arrow-up-right')}</span>
               </a>
             </div>
@@ -407,11 +414,11 @@ function documentsDeskHtml() {
         .join("");
 
       return `
-        <div class="mb-10">
+        <div class="mb-10" data-doc-cat="${catIdx}">
           <div class="flex items-center gap-3 mb-5">
             <span class="inline-flex h-2.5 w-2.5 rounded-full bg-orange-500"></span>
-            <h3 class="font-display text-[1.15rem] font-bold text-ink-900">${esc(cat.category)}</h3>
-            <span class="rounded-full bg-orange-50 text-orange-800 border border-orange-200 px-2.5 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wider">${esc(cat.tag)}</span>
+            <h3 class="doc-cat-heading font-display text-[1.15rem] font-bold text-ink-900">${esc(cat.category)}</h3>
+            <span class="doc-cat-tag rounded-full bg-orange-50 text-orange-800 border border-orange-200 px-2.5 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wider">${esc(cat.tag)}</span>
           </div>
           <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             ${cards}
@@ -425,15 +432,15 @@ function documentsDeskHtml() {
 function processStepsHtml() {
   return processSteps
     .map(
-      (s) => `<li class="relative bg-white p-7">
+      (s, i) => `<li class="relative bg-white p-7" data-step-index="${i}">
   <div class="flex items-center justify-between gap-4">
     <span class="grid h-10 w-10 place-items-center rounded bg-slate-100 text-ink-800" aria-hidden="true">${ico(
       s.icon
     )}</span>
     <span class="nums font-display text-[0.8125rem] font-bold tracking-[0.08em] text-slate-300">${s.n}</span>
   </div>
-  <h3 class="mt-5 text-[1.0625rem] leading-snug">${esc(s.title)}</h3>
-  <p class="mt-2.5 text-[0.9375rem] leading-relaxed text-slate-600">${esc(s.body)}</p>
+  <h3 class="step-title mt-5 text-[1.0625rem] leading-snug">${esc(s.title)}</h3>
+  <p class="step-body mt-2.5 text-[0.9375rem] leading-relaxed text-slate-600">${esc(s.body)}</p>
 </li>`
     )
     .join("\n");
@@ -442,12 +449,12 @@ function processStepsHtml() {
 function processNotesHtml() {
   return processNotes
     .map(
-      (n) => `<div class="rounded-lg border border-slate-200 bg-white p-6">
+      (n, i) => `<div class="rounded-lg border border-slate-200 bg-white p-6" data-note-index="${i}">
   <span class="grid h-9 w-9 place-items-center rounded bg-ink-900 text-signal-500" aria-hidden="true">${ico(
     n.icon
   )}</span>
-  <h3 class="mt-4 text-[1.0625rem]">${esc(n.title)}</h3>
-  <p class="mt-2 text-[0.9375rem] leading-relaxed text-slate-600">${esc(n.body)}</p>
+  <h3 class="note-title mt-4 text-[1.0625rem]">${esc(n.title)}</h3>
+  <p class="note-body mt-2 text-[0.9375rem] leading-relaxed text-slate-600">${esc(n.body)}</p>
 </div>`
     )
     .join("\n");
@@ -520,15 +527,15 @@ function sectorsHtml() {
 function faqHtml() {
   return faq
     .map(
-      (f, i) => `<details class="group py-5" data-faq>
+      (f, i) => `<details class="group py-5" data-faq="${i}">
   <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-[1.0625rem] font-semibold text-ink-900 marker:hidden">
-    <span>${esc(f.q)}</span>
+    <span class="faq-q">${esc(f.q)}</span>
     <span class="mt-0.5 grid h-6 w-6 flex-none place-items-center rounded-full border border-slate-300 text-slate-500 transition-colors group-open:border-ink-900 group-open:bg-ink-900 group-open:text-white" aria-hidden="true">${ico(
       "chevron-down",
       "icon h-3.5 w-3.5"
     )}</span>
   </summary>
-  <div class="measure mt-3 text-[0.9375rem] leading-relaxed text-slate-600">${esc(f.a)}</div>
+  <div class="faq-a measure mt-3 text-[0.9375rem] leading-relaxed text-slate-600">${esc(f.a)}</div>
 </details>`
     )
     .join("\n");
@@ -538,12 +545,12 @@ function formServiceOptions() {
   const groups = servicesByDivision
     .map(
       (d) =>
-        `<optgroup label="${esc(d.name)}">${d.services
-          .map((s) => `<option value="${s.id}">${esc(s.name)}</option>`)
+        `<optgroup label="${esc(d.name)}" data-div-id="${d.id}">${d.services
+          .map((s) => `<option value="${s.id}" data-svc-id="${s.id}">${esc(s.name)}</option>`)
           .join("")}</optgroup>`
     )
     .join("");
-  return `<option value="" selected disabled>Choose a service…</option>${groups}`;
+  return `<option value="" selected disabled data-i18n="form_choose_service">Choose a service…</option>${groups}`;
 }
 
 function contactHoursHtml() {
@@ -574,35 +581,53 @@ function footerServiceColumns() {
     list
       .map(
         (d) =>
-          `<li><a href="#${d.id}" class="inline-flex items-start gap-1.5 py-1 text-[0.75rem] sm:text-[0.8125rem] leading-snug text-[#F5F0E3]/90 transition-all hover:text-[#D6B36A] hover:translate-x-0.5"><span class="text-[#D6B36A] text-[0.6875rem] mt-0.5 flex-none">›</span><span>${esc(
+          `<li data-footer-div="${d.id}"><a href="#${d.id}" class="inline-flex items-start gap-1.5 py-1 text-[0.75rem] sm:text-[0.8125rem] leading-snug text-[#F5F0E3]/90 transition-all hover:text-[#D6B36A] hover:translate-x-0.5"><span class="text-[#D6B36A] text-[0.6875rem] mt-0.5 flex-none">›</span><span class="footer-div-name">${esc(
             d.name
           )}</span></a></li>`
       )
       .join("\n");
 
   const popular = [
-    { label: "Aadhaar Services (UIDAI)", href: "#service-aadhaar" },
-    { label: "PAN Card Services (NSDL)", href: "#service-pan" },
-    { label: "Passport Application Seva", href: "#service-passport" },
-    { label: "7/12 Bhulekh Land Records", href: "#service-maps-forms" },
-    { label: "EPFO PF & UAN Claims", href: "#service-epfo" },
-    { label: "Ayushman Bharat (PM-JAY)", href: "#service-ayushman-bharat" },
-    { label: "Police Verification (PCC)", href: "#service-police-verification" },
-    { label: "Ration Card (RCMS Food)", href: "#service-ration-card" },
+    { id: "aadhaar", label: "Aadhaar Services (UIDAI)", href: "#service-aadhaar" },
+    { id: "pan", label: "PAN Card Services (NSDL)", href: "#service-pan" },
+    { id: "passport", label: "Passport Application Seva", href: "#service-passport" },
+    { id: "maps-forms", label: "7/12 Bhulekh Land Records", href: "#service-maps-forms" },
+    { id: "epfo", label: "EPFO PF & UAN Claims", href: "#service-epfo" },
+    { id: "ayushman-bharat", label: "Ayushman Bharat (PM-JAY)", href: "#service-ayushman-bharat" },
+    { id: "police-verification", label: "Police Verification (PCC)", href: "#service-police-verification" },
+    { id: "ration-card", label: "Ration Card (RCMS Food)", href: "#service-ration-card" },
   ];
 
   const companyLinks = [
-    { label: "About the Counter Desk", href: "#capabilities" },
-    { label: "Our 4-Step Filing Process", href: "#process" },
-    { label: "Full Service Catalogue (86)", href: "#services" },
-    { label: "Document Verification List", href: "#documents" },
-    { label: "Frequently Asked Questions", href: "#faq" },
-    { label: "Counter Contact & Location", href: "#contact" },
+    { i18n: "footer_about_counter", label: "About the Counter Desk", href: "#capabilities" },
+    { i18n: "footer_4step_process", label: "Our 4-Step Filing Process", href: "#process" },
+    { i18n: "footer_full_catalogue", label: "Full Service Catalogue (86)", href: "#services" },
+    { i18n: "footer_doc_list", label: "Document Verification List", href: "#documents" },
+    { i18n: "footer_faqs", label: "Frequently Asked Questions", href: "#faq" },
+    { i18n: "footer_contact_loc", label: "Counter Contact & Location", href: "#contact" },
   ];
 
+  const popularHtml = popular
+    .map(
+      (p) =>
+        `<li data-footer-pop="${p.id}"><a href="${p.href}" class="inline-flex items-start gap-1.5 py-1 text-[0.75rem] sm:text-[0.8125rem] leading-snug text-[#F5F0E3]/90 transition-all hover:text-[#D6B36A] hover:translate-x-0.5"><span class="text-[#D6B36A] text-[0.6875rem] mt-0.5 flex-none">›</span><span class="footer-pop-name">${esc(
+          p.label
+        )}</span></a></li>`
+    )
+    .join("\n");
+
+  const companyHtml = companyLinks
+    .map(
+      (c) =>
+        `<li><a href="${c.href}" class="inline-flex items-start gap-1.5 py-1 text-[0.75rem] sm:text-[0.8125rem] leading-snug text-[#F5F0E3]/90 transition-all hover:text-[#D6B36A] hover:translate-x-0.5"><span class="text-[#D6B36A] text-[0.6875rem] mt-0.5 flex-none">›</span><span data-i18n="${c.i18n}">${esc(
+          c.label
+        )}</span></a></li>`
+    )
+    .join("\n");
+
   return {
-    FOOTER_SERVICES: footerLinks(popular),
-    FOOTER_COMPANY: footerLinks(companyLinks),
+    FOOTER_SERVICES: popularHtml,
+    FOOTER_COMPANY: companyHtml,
     FOOTER_DIVISIONS_1: build(divisions.slice(0, half)),
     FOOTER_DIVISIONS_2: build(divisions.slice(half)),
   };
@@ -666,6 +691,15 @@ const slots = {
   ...footerServiceColumns(),
   FOOTER_LEGAL: footerLegalHtml(),
   FOOTER_HOURS: footerHoursHtml(),
+  I18N_DATA: `<script>window.AMAYRA_I18N = ${JSON.stringify({
+    mrUI,
+    mrDivisions,
+    mrServices,
+    mrDocumentsChecklist,
+    mrProcessSteps,
+    mrProcessNotes,
+    mrFaq,
+  })};</script>`,
 };
 
 let html = await readFile(TEMPLATE, "utf8");

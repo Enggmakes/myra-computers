@@ -24,7 +24,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -99,13 +99,13 @@
       id="quick-bar"
       class="no-print hidden border-b border-[#8FB7AE]/20 bg-[#071C19] text-[#8FB7AE] lg:block"
     >
-      <div class="shell flex h-10 items-center justify-between text-[0.8125rem]">
-        <p class="flex items-center gap-2">
+      <div class="header-container flex h-10 items-center justify-between text-[0.8125rem]">
+        <p class="flex items-center gap-2 whitespace-nowrap">
           <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
-          <span class="text-[#8FB7AE] font-medium">Sangamner Counter Open Today</span>
-          <span class="text-[#D6B36A] font-semibold font-display">09:30 – 20:00</span>
+          <span class="text-[#8FB7AE] font-medium" data-i18n="counter_open_today">Sangamner Counter Open Today</span>
+          <span class="text-[#D6B36A] font-semibold font-display" data-i18n="counter_hours">09:30 – 20:00</span>
         </p>
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-6 whitespace-nowrap">
           <a
             class="inline-flex items-center gap-2 text-[#8FB7AE] transition-colors hover:text-[#F5F0E3]"
             href="https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20have%20an%20inquiry"
@@ -129,7 +129,7 @@
             <svg class="w-3.5 h-3.5 text-[#D6B36A] flex-shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" />
             </svg>
-            <span class="leading-none pt-[1px]">Jambut Bk, Sangamner</span>
+            <span class="leading-none pt-[1px]" data-i18n="location">Jambut Bk, Sangamner</span>
           </span>
         </div>
       </div>
@@ -142,9 +142,9 @@
       id="site-header"
       class="no-print header-shell sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md shadow-sm"
     >
-      <div class="shell flex h-[4.5rem] items-center justify-between gap-6">
-        <!-- Brand -->
-        <a href="#top" class="group flex items-center gap-3" aria-label="Amayra Computers — home">
+      <div class="header-container flex h-[4.5rem] items-center justify-between gap-4">
+        <!-- Brand (shifted to leftmost edge) -->
+        <a href="#top" class="header-brand group flex items-center gap-3 flex-none" aria-label="Amayra Computers — home">
           <span
             class="grid h-10 w-10 flex-none place-items-center rounded-[6px] bg-[#071C19] text-[#D6B36A] shadow-sm border border-[#D6B36A]/30"
           >
@@ -154,75 +154,101 @@
           </span>
           <span class="flex flex-col leading-none">
             <span
-              class="font-display text-[1.125rem] font-bold tracking-[-0.02em] text-[#17212B] group-hover:text-[#D6B36A] transition-colors"
+              class="font-display text-[1.125rem] font-bold tracking-[-0.02em] text-[#17212B] group-hover:text-[#D6B36A] transition-colors whitespace-nowrap"
+              data-i18n="brand_name"
               >Amayra Computers</span
             >
             <span
-              class="mt-0.5 font-display text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-[#D6B36A]"
+              class="mt-0.5 font-display text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-[#D6B36A] whitespace-nowrap"
+              data-i18n="brand_subtitle"
               >Jambut Bk • Sangamner</span
             >
           </span>
         </a>
 
-        <!-- Desktop navigation -->
-        <nav class="hidden xl:block" aria-label="Primary">
-          <ul class="flex items-center gap-1.5">
+        <!-- Desktop navigation (centered with clean spacing, guaranteed no-wrap) -->
+        <nav class="hidden xl:flex items-center justify-center flex-1 mx-3 2xl:mx-6" aria-label="Primary">
+          <ul class="flex items-center gap-1.5 2xl:gap-3">
             <li>
               <a
                 href="#services"
-                class="inline-flex items-center gap-1.5 rounded px-3 py-2 font-display text-[0.9375rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A]"
+                class="header-nav-link inline-flex items-center gap-1.5 rounded px-2.5 2xl:px-3 py-2 font-display text-[0.9375rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A]"
               >
-                <span>Services</span>
+                <span data-i18n="nav_services">Services</span>
               </a>
             </li>
             <li>
               <a
                 href="#government"
-                class="inline-flex rounded px-3 py-2 font-display text-[0.9375rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A]"
-                >Government Portals</a
+                class="header-nav-link inline-flex rounded px-2.5 2xl:px-3 py-2 font-display text-[0.9375rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A]"
+                ><span data-i18n="nav_govt_portals">Government Portals</span></a
               >
             </li>
             <li>
               <a
                 href="#documents"
-                class="inline-flex rounded px-3.5 py-1.5 font-display text-[0.9375rem] font-bold text-[#D6B36A] bg-[#F5F0E3] border border-[#D6B36A]/40 transition-colors"
-                >Documents Desk</a
+                class="header-nav-link inline-flex rounded px-3 2xl:px-3.5 py-1.5 font-display text-[0.9375rem] font-bold text-[#D6B36A] bg-[#F5F0E3] border border-[#D6B36A]/40 transition-colors"
+                ><span data-i18n="nav_documents_desk">Documents Desk</span></a
               >
             </li>
 
             <li>
               <a
                 href="#process"
-                class="inline-flex rounded px-3 py-2 font-display text-[0.9375rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A]"
-                >How we work</a
+                class="header-nav-link inline-flex rounded px-2.5 2xl:px-3 py-2 font-display text-[0.9375rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A]"
+                ><span data-i18n="nav_how_we_work">How we work</span></a
               >
             </li>
             <li>
               <a
                 href="#capabilities"
-                class="inline-flex rounded px-3 py-2 font-display text-[0.9375rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A]"
-                >Capabilities</a
+                class="header-nav-link inline-flex rounded px-2.5 2xl:px-3 py-2 font-display text-[0.9375rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A]"
+                ><span data-i18n="nav_capabilities">Capabilities</span></a
               >
             </li>
           </ul>
         </nav>
 
-        <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Right actions: Callback button moved left + Language Switcher at right-most corner -->
+        <div class="header-actions flex items-center flex-none">
           <a
             href="tel:+919766174974"
-            class="hidden items-center gap-2 font-display text-[0.875rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A] md:inline-flex xl:hidden leading-none"
+            class="hidden items-center gap-2 font-display text-[0.875rem] font-semibold text-[#17212B] transition-colors hover:text-[#D6B36A] md:inline-flex xl:hidden leading-none whitespace-nowrap"
           >
             <svg class="w-3.5 h-3.5 text-[#D6B36A] flex-shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
             <span class="pt-[1px]">+91 97661 74974</span>
           </a>
-          <a href="#contact" class="group hidden sm:inline-flex items-center gap-2 rounded-md bg-[#17212B] px-4 py-2.5 font-display text-[0.875rem] font-bold text-[#F5F0E3] transition-all hover:bg-[#071C19] hover:text-[#D6B36A]">
-            <span class="leading-none pt-[1px]">Request a callback</span>
+          <a href="#contact" class="header-cta-btn group hidden sm:inline-flex items-center gap-2 rounded-md bg-[#17212B] px-3.5 py-2 font-display text-[0.875rem] font-bold text-[#F5F0E3] transition-all hover:bg-[#071C19] hover:text-[#D6B36A]">
+            <span class="leading-none pt-[1px]" data-i18n="nav_request_callback">Request a callback</span>
             <svg class="w-3.5 h-3.5 text-[#D6B36A] flex-shrink-0 transition-transform group-hover:translate-x-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
             </svg>
           </a>
+
+          <!-- Language Switcher (Desktop & Tablet) at the right-most corner -->
+          <div class="lang-switcher flex items-center bg-slate-100 border border-slate-300 rounded-lg p-0.5 shadow-xs flex-none" role="group" aria-label="Language selection">
+            <button
+              type="button"
+              data-lang="en"
+              class="lang-btn active flex items-center gap-1 px-2.5 py-1.5 rounded-md font-display text-[0.8125rem] font-bold transition-all text-[#17212B] bg-white shadow-xs"
+              title="Switch to English"
+              aria-pressed="true"
+            >
+              <span>EN</span>
+            </button>
+            <button
+              type="button"
+              data-lang="mr"
+              class="lang-btn flex items-center gap-1 px-2.5 py-1.5 rounded-md font-display text-[0.8125rem] font-bold transition-all text-slate-500 hover:text-[#17212B]"
+              title="मराठीमध्ये पहा"
+              aria-pressed="false"
+            >
+              <span>मराठी</span>
+            </button>
+          </div>
+
           <button
             type="button"
             id="nav-toggle"
@@ -230,7 +256,7 @@
             aria-expanded="false"
             aria-controls="mobile-nav"
           >
-            <span class="sr-only">Open menu</span>
+            <span class="sr-only" data-i18n="nav_open_menu">Open menu</span>
             <span class="icon icon-lg" aria-hidden="true" data-icon="menu" data-icon-toggle="x"></span>
           </button>
         </div>
@@ -297,8 +323,8 @@
               </svg>
             </span>
             <div class="flex flex-col leading-none">
-              <span class="font-display text-[1rem] font-bold tracking-tight text-[#F5F0E3]">Amayra Computers</span>
-              <span class="mt-0.5 font-display text-[0.625rem] font-bold uppercase tracking-[0.15em] text-[#D6B36A]">Counter Navigation</span>
+              <span class="font-display text-[1rem] font-bold tracking-tight text-[#F5F0E3]" data-i18n="brand_name">Amayra Computers</span>
+              <span class="mt-0.5 font-display text-[0.625rem] font-bold uppercase tracking-[0.15em] text-[#D6B36A]" data-i18n="mobile_nav_title">Counter Navigation</span>
             </div>
           </div>
           <button
@@ -315,16 +341,40 @@
         <div class="flex items-center justify-between px-5 py-2.5 bg-[#071C19]/90 border-b border-[#8FB7AE]/15 text-[0.75rem]">
           <p class="flex items-center gap-2">
             <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-[#8FB7AE] font-medium">Sangamner Counter Open</span>
+            <span class="text-[#8FB7AE] font-medium" data-i18n="counter_open_today">Sangamner Counter Open</span>
           </p>
-          <span class="text-[#D6B36A] font-semibold font-display">09:30 – 20:00</span>
+          <span class="text-[#D6B36A] font-semibold font-display" data-i18n="counter_hours">09:30 – 20:00</span>
         </div>
 
         <!-- Scrollable Navigation Body -->
         <nav class="flex-1 overflow-y-auto px-5 py-5 space-y-6" aria-label="Mobile Navigation">
+          <!-- Mobile Language Switcher -->
+          <div class="flex items-center justify-between p-3 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/30 shadow-xs">
+            <span class="text-[0.8125rem] font-bold text-[#F5F0E3] flex items-center gap-2">
+              <span class="text-[#D6B36A]">🌐</span>
+              <span data-i18n="lang_choice_label">Language / भाषा</span>
+            </span>
+            <div class="flex items-center bg-[#071C19] border border-[#8FB7AE]/30 rounded-md p-0.5" role="group" aria-label="Language selection">
+              <button
+                type="button"
+                data-lang="en"
+                class="lang-btn-mobile active px-3 py-1 text-xs font-bold rounded transition-all text-[#071C19] bg-[#D6B36A]"
+              >
+                English
+              </button>
+              <button
+                type="button"
+                data-lang="mr"
+                class="lang-btn-mobile px-3 py-1 text-xs font-bold rounded transition-all text-[#8FB7AE] hover:text-[#F5F0E3]"
+              >
+                मराठी
+              </button>
+            </div>
+          </div>
+
           <!-- Primary Section Links as Rich Tactile Cards -->
           <div class="space-y-2">
-            <p class="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-[#D6B36A]">Quick Directory</p>
+            <p class="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-[#D6B36A]" data-i18n="mobile_quick_directory">Quick Directory</p>
             <div class="space-y-1.5">
               <a
                 href="#services"
@@ -336,8 +386,8 @@
                     <span class="icon" aria-hidden="true" data-icon="layers"></span>
                   </span>
                   <div>
-                    <span class="font-display text-[0.9375rem] font-bold block leading-snug">Services Catalogue</span>
-                    <span class="text-[0.75rem] text-[#8FB7AE]">86 official service lines</span>
+                    <span class="font-display text-[0.9375rem] font-bold block leading-snug" data-i18n="mobile_cat_title">Services Catalogue</span>
+                    <span class="text-[0.75rem] text-[#8FB7AE]" data-i18n="mobile_cat_sub">86 official service lines</span>
                   </div>
                 </div>
                 <span class="text-xs font-bold text-[#D6B36A]">→</span>
@@ -353,8 +403,8 @@
                     <span class="icon" aria-hidden="true" data-icon="landmark"></span>
                   </span>
                   <div>
-                    <span class="font-display text-[0.9375rem] font-bold block leading-snug">Government Portals</span>
-                    <span class="text-[0.75rem] text-[#8FB7AE]">29 Central &amp; State portals</span>
+                    <span class="font-display text-[0.9375rem] font-bold block leading-snug" data-i18n="mobile_portals_title">Government Portals</span>
+                    <span class="text-[0.75rem] text-[#8FB7AE]" data-i18n="mobile_portals_sub">29 Central &amp; State portals</span>
                   </div>
                 </div>
                 <span class="text-xs font-bold text-[#D6B36A]">→</span>
@@ -370,8 +420,8 @@
                     <span class="icon" aria-hidden="true" data-icon="clipboard-list"></span>
                   </span>
                   <div>
-                    <span class="font-display text-[0.9375rem] font-bold block leading-snug">Documents Checklist</span>
-                    <span class="text-[0.75rem] text-slate-600 font-medium">What to bring before visiting</span>
+                    <span class="font-display text-[0.9375rem] font-bold block leading-snug" data-i18n="mobile_docs_title">Documents Checklist</span>
+                    <span class="text-[0.75rem] text-slate-600 font-medium" data-i18n="mobile_docs_sub">What to bring before visiting</span>
                   </div>
                 </div>
                 <span class="text-xs font-bold text-[#071C19]">→</span>
@@ -387,8 +437,8 @@
                     <span class="icon" aria-hidden="true" data-icon="list-checks"></span>
                   </span>
                   <div>
-                    <span class="font-display text-[0.9375rem] font-bold block leading-snug">How We Work</span>
-                    <span class="text-[0.75rem] text-[#8FB7AE]">4-step verified filing process</span>
+                    <span class="font-display text-[0.9375rem] font-bold block leading-snug" data-i18n="mobile_process_title">How We Work</span>
+                    <span class="text-[0.75rem] text-[#8FB7AE]" data-i18n="mobile_process_sub">4-step verified filing process</span>
                   </div>
                 </div>
                 <span class="text-xs font-bold text-[#D6B36A]">→</span>
@@ -404,8 +454,8 @@
                     <span class="icon" aria-hidden="true" data-icon="shield-check"></span>
                   </span>
                   <div>
-                    <span class="font-display text-[0.9375rem] font-bold block leading-snug">Capabilities &amp; Counter</span>
-                    <span class="text-[0.75rem] text-[#8FB7AE]">Certified assistance in Sangamner</span>
+                    <span class="font-display text-[0.9375rem] font-bold block leading-snug" data-i18n="mobile_cap_title">Capabilities &amp; Counter</span>
+                    <span class="text-[0.75rem] text-[#8FB7AE]" data-i18n="mobile_cap_sub">Certified assistance in Sangamner</span>
                   </div>
                 </div>
                 <span class="text-xs font-bold text-[#D6B36A]">→</span>
@@ -416,8 +466,8 @@
           <!-- Service Divisions Section -->
           <div>
             <div class="flex items-center justify-between mb-2.5">
-              <p class="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-[#D6B36A]">Service Divisions</p>
-              <span class="text-[0.6875rem] text-[#8FB7AE]/80 font-medium">11 Branches</span>
+              <p class="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-[#D6B36A]" data-i18n="mobile_divisions_heading">Service Divisions</p>
+              <span class="text-[0.6875rem] text-[#8FB7AE]/80 font-medium" data-i18n="mobile_branches">11 Branches</span>
             </div>
             <ul class="grid grid-cols-2 gap-2">
               <!--@SLOT:MOBILE_DIVISIONS-->
@@ -432,7 +482,7 @@
             class="flex items-center justify-center gap-2 rounded-md bg-[#D6B36A] text-[#071C19] py-3 px-4 font-display font-bold text-[0.9375rem] shadow-lg shadow-black/30 hover:bg-[#e2c482] transition-all"
             data-mobile-nav-close
           >
-            <span class="leading-none pt-[1px]">Request a Callback</span>
+            <span class="leading-none pt-[1px]" data-i18n="nav_request_callback">Request a Callback</span>
             <svg class="w-4 h-4 text-[#071C19] flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
             </svg>
@@ -445,7 +495,7 @@
               <svg class="w-3.5 h-3.5 text-[#D6B36A] flex-shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
-              <span class="leading-none pt-[1px]">Call Counter</span>
+              <span class="leading-none pt-[1px]" data-i18n="mobile_call_counter">Call Counter</span>
             </a>
             <a
               href="https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20have%20an%20inquiry"
@@ -474,13 +524,13 @@
         <!-- Decorative side vertical inscriptions matching reference -->
         <div class="hidden 2xl:flex absolute left-5 top-1/3 -translate-y-1/2 flex-col items-center gap-3 text-center pointer-events-none select-none opacity-60 z-10">
           <span class="w-[1.5px] h-12 bg-[#D6B36A]"></span>
-          <span class="text-[0.5625rem] font-bold uppercase tracking-[0.25em] text-[#8FB7AE]" style="writing-mode: vertical-rl; text-orientation: mixed;">
+          <span class="text-[0.5625rem] font-bold uppercase tracking-[0.25em] text-[#8FB7AE]" style="writing-mode: vertical-rl; text-orientation: mixed;" data-i18n="hero_side_left">
             CENTRAL • GOVERNMENT • MAHARASHTRA • SERVICES
           </span>
         </div>
 
         <div class="hidden 2xl:flex absolute right-5 top-2/3 -translate-y-1/2 flex-col items-center gap-3 text-center pointer-events-none select-none opacity-60 z-10">
-          <span class="text-[0.5625rem] font-bold uppercase tracking-[0.25em] text-[#8FB7AE]" style="writing-mode: vertical-rl; text-orientation: mixed;">
+          <span class="text-[0.5625rem] font-bold uppercase tracking-[0.25em] text-[#8FB7AE]" style="writing-mode: vertical-rl; text-orientation: mixed;" data-i18n="hero_side_right">
             SEAMLESS • ACCESS • TO A STRONGER • MAHARASHTRA
           </span>
           <span class="w-[1.5px] h-12 bg-[#D6B36A]"></span>
@@ -493,16 +543,15 @@
               <!-- Eyebrow -->
               <p class="inline-flex items-center gap-2 text-[0.6875rem] sm:text-[0.75rem] font-bold uppercase tracking-[0.18em] text-[#8FB7AE] mb-3 sm:mb-4">
                 <span class="w-4 sm:w-5 h-[2px] bg-[#D6B36A]"></span>
-                <span>YOUR TRUSTED GOVERNMENT SERVICE PARTNER</span>
+                <span data-i18n="hero_eyebrow">YOUR TRUSTED GOVERNMENT SERVICE PARTNER</span>
               </p>
 
               <h1 id="hero-heading" class="text-[#F5F0E3] font-display text-[1.85rem] sm:text-[2.65rem] lg:text-[3.25rem] font-bold leading-[1.12] sm:leading-[1.06] tracking-tight">
-                Government Services &amp;<br>
-                Digital Portals.
-                <span class="text-[#D6B36A] block mt-1 sm:mt-1.5">One Certified Counter.</span>
+                <span data-i18n="hero_h1_part1">Government Services &amp;<br>Digital Portals.</span>
+                <span class="text-[#D6B36A] block mt-1 sm:mt-1.5" data-i18n="hero_h1_part2">One Certified Counter.</span>
               </h1>
 
-              <p class="measure mt-4 sm:mt-5 text-[0.9375rem] sm:text-[1.0625rem] leading-relaxed text-[#8FB7AE]/90">
+              <p class="measure mt-4 sm:mt-5 text-[0.9375rem] sm:text-[1.0625rem] leading-relaxed text-[#8FB7AE]/90" data-i18n="hero_blurb">
                 Direct access to 29 Central &amp; Maharashtra Government portals, certified biometric assistance, 
                 insurance, credit, printing and enterprise IT infrastructure — served with speed, accuracy, and official receipts.
               </p>
@@ -514,7 +563,7 @@
                     <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" />
                     <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" />
                   </svg>
-                  <span class="leading-none pt-[1px]">Browse Services &amp; Portals</span>
+                  <span class="leading-none pt-[1px]" data-i18n="hero_btn_browse">Browse Services &amp; Portals</span>
                   <svg class="w-4 h-4 text-[#071C19] flex-shrink-0 transition-transform group-hover:translate-x-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                   </svg>
@@ -528,7 +577,7 @@
                     <path d="M8 11h.01" />
                     <path d="M8 16h.01" />
                   </svg>
-                  <span class="leading-none pt-[1px]">Check Required Documents</span>
+                  <span class="leading-none pt-[1px]" data-i18n="hero_btn_docs">Check Required Documents</span>
                 </a>
               </div>
 
@@ -539,62 +588,62 @@
                     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                   </svg>
-                  <span class="leading-none pt-[1px]">INSTANT ONE-CLICK OFFICIAL PORTALS</span>
+                  <span class="leading-none pt-[1px]" data-i18n="hero_fast_track_heading">INSTANT ONE-CLICK OFFICIAL PORTALS</span>
                 </p>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[0.78125rem] sm:text-[0.8125rem]">
                   <a href="https://aaplesarkar.mahaonline.gov.in/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-2 rounded bg-[#0c2b27]/80 backdrop-blur-sm border border-[#8FB7AE]/25 px-2.5 py-2.5 text-[#F5F0E3] hover:border-[#D6B36A] hover:bg-[#0f3530] hover:text-[#D6B36A] transition-all min-w-0">
                     <span class="flex items-center gap-2 min-w-0 truncate">
                       <svg class="w-3.5 h-3.5 text-[#8FB7AE] flex-shrink-0 group-hover:text-[#D6B36A] transition-colors" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18v-7" /><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" /></svg>
-                      <span class="truncate font-medium text-[0.78125rem]">Aaple Sarkar</span>
+                      <span class="truncate font-medium text-[0.78125rem]" data-i18n="portal_aaple_sarkar">Aaple Sarkar</span>
                     </span>
                     <span class="text-[0.6875rem] text-[#8FB7AE]/70 flex-shrink-0 group-hover:text-[#D6B36A] transition-colors">↗</span>
                   </a>
                   <a href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-2 rounded bg-[#0c2b27]/80 backdrop-blur-sm border border-[#8FB7AE]/25 px-2.5 py-2.5 text-[#F5F0E3] hover:border-[#D6B36A] hover:bg-[#0f3530] hover:text-[#D6B36A] transition-all min-w-0">
                     <span class="flex items-center gap-2 min-w-0 truncate">
                       <svg class="w-3.5 h-3.5 text-[#8FB7AE] flex-shrink-0 group-hover:text-[#D6B36A] transition-colors" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10h2" /><path d="M16 14h2" /><path d="M6.17 15a3 3 0 0 1 5.66 0" /><circle cx="9" cy="11" r="2" /><rect x="2" y="5" width="20" height="14" rx="2" /></svg>
-                      <span class="truncate font-medium text-[0.78125rem]">myAadhaar (UIDAI)</span>
+                      <span class="truncate font-medium text-[0.78125rem]" data-i18n="portal_myaadhaar">myAadhaar (UIDAI)</span>
                     </span>
                     <span class="text-[0.6875rem] text-[#8FB7AE]/70 flex-shrink-0 group-hover:text-[#D6B36A] transition-colors">↗</span>
                   </a>
                   <a href="https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-2 rounded bg-[#0c2b27]/80 backdrop-blur-sm border border-[#8FB7AE]/25 px-2.5 py-2.5 text-[#F5F0E3] hover:border-[#D6B36A] hover:bg-[#0f3530] hover:text-[#D6B36A] transition-all min-w-0">
                     <span class="flex items-center gap-2 min-w-0 truncate">
                       <svg class="w-3.5 h-3.5 text-[#8FB7AE] flex-shrink-0 group-hover:text-[#D6B36A] transition-colors" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" /></svg>
-                      <span class="truncate font-medium text-[0.78125rem]">PAN Card (NSDL)</span>
+                      <span class="truncate font-medium text-[0.78125rem]" data-i18n="portal_pan">PAN Card (NSDL)</span>
                     </span>
                     <span class="text-[0.6875rem] text-[#8FB7AE]/70 flex-shrink-0 group-hover:text-[#D6B36A] transition-colors">↗</span>
                   </a>
                   <a href="https://www.passportindia.gov.in/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-2 rounded bg-[#0c2b27]/80 backdrop-blur-sm border border-[#8FB7AE]/25 px-2.5 py-2.5 text-[#F5F0E3] hover:border-[#D6B36A] hover:bg-[#0f3530] hover:text-[#D6B36A] transition-all min-w-0">
                     <span class="flex items-center gap-2 min-w-0 truncate">
                       <svg class="w-3.5 h-3.5 text-[#8FB7AE] flex-shrink-0 group-hover:text-[#D6B36A] transition-colors" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" /></svg>
-                      <span class="truncate font-medium text-[0.78125rem]">Passport Seva</span>
+                      <span class="truncate font-medium text-[0.78125rem]" data-i18n="portal_passport">Passport Seva</span>
                     </span>
                     <span class="text-[0.6875rem] text-[#8FB7AE]/70 flex-shrink-0 group-hover:text-[#D6B36A] transition-colors">↗</span>
                   </a>
                   <a href="https://bhulekh.mahabhumi.gov.in/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-2 rounded bg-[#0c2b27]/80 backdrop-blur-sm border border-[#8FB7AE]/25 px-2.5 py-2.5 text-[#F5F0E3] hover:border-[#D6B36A] hover:bg-[#0f3530] hover:text-[#D6B36A] transition-all min-w-0">
                     <span class="flex items-center gap-2 min-w-0 truncate">
                       <svg class="w-3.5 h-3.5 text-[#8FB7AE] flex-shrink-0 group-hover:text-[#D6B36A] transition-colors" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg>
-                      <span class="truncate font-medium text-[0.78125rem]">7/12 Bhulekh</span>
+                      <span class="truncate font-medium text-[0.78125rem]" data-i18n="portal_712">7/12 Bhulekh</span>
                     </span>
                     <span class="text-[0.6875rem] text-[#8FB7AE]/70 flex-shrink-0 group-hover:text-[#D6B36A] transition-colors">↗</span>
                   </a>
                   <a href="https://parivahan.gov.in/parivahan/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-2 rounded bg-[#0c2b27]/80 backdrop-blur-sm border border-[#8FB7AE]/25 px-2.5 py-2.5 text-[#F5F0E3] hover:border-[#D6B36A] hover:bg-[#0f3530] hover:text-[#D6B36A] transition-all min-w-0">
                     <span class="flex items-center gap-2 min-w-0 truncate">
                       <svg class="w-3.5 h-3.5 text-[#8FB7AE] flex-shrink-0 group-hover:text-[#D6B36A] transition-colors" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /><circle cx="7" cy="17" r="2" /><path d="M9 17h6" /><circle cx="17" cy="17" r="2" /></svg>
-                      <span class="truncate font-medium text-[0.78125rem]">Parivahan (RTO)</span>
+                      <span class="truncate font-medium text-[0.78125rem]" data-i18n="portal_parivahan">Parivahan (RTO)</span>
                     </span>
                     <span class="text-[0.6875rem] text-[#8FB7AE]/70 flex-shrink-0 group-hover:text-[#D6B36A] transition-colors">↗</span>
                   </a>
                   <a href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-2 rounded bg-[#0c2b27]/80 backdrop-blur-sm border border-[#8FB7AE]/25 px-2.5 py-2.5 text-[#F5F0E3] hover:border-[#D6B36A] hover:bg-[#0f3530] hover:text-[#D6B36A] transition-all min-w-0">
                     <span class="flex items-center gap-2 min-w-0 truncate">
                       <svg class="w-3.5 h-3.5 text-[#8FB7AE] flex-shrink-0 group-hover:text-[#D6B36A] transition-colors" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg>
-                      <span class="truncate font-medium text-[0.78125rem]">Ayushman PM-JAY</span>
+                      <span class="truncate font-medium text-[0.78125rem]" data-i18n="portal_ayushman">Ayushman PM-JAY</span>
                     </span>
                     <span class="text-[0.6875rem] text-[#8FB7AE]/70 flex-shrink-0 group-hover:text-[#D6B36A] transition-colors">↗</span>
                   </a>
                   <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-2 rounded bg-[#0c2b27]/80 backdrop-blur-sm border border-[#8FB7AE]/25 px-2.5 py-2.5 text-[#F5F0E3] hover:border-[#D6B36A] hover:bg-[#0f3530] hover:text-[#D6B36A] transition-all min-w-0">
                     <span class="flex items-center gap-2 min-w-0 truncate">
                       <svg class="w-3.5 h-3.5 text-[#8FB7AE] flex-shrink-0 group-hover:text-[#D6B36A] transition-colors" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22 16 8" /><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z" /><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z" /><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z" /><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z" /></svg>
-                      <span class="truncate font-medium text-[0.78125rem]">PM-KISAN</span>
+                      <span class="truncate font-medium text-[0.78125rem]" data-i18n="portal_pmkisan">PM-KISAN</span>
                     </span>
                     <span class="text-[0.6875rem] text-[#8FB7AE]/70 flex-shrink-0 group-hover:text-[#D6B36A] transition-colors">↗</span>
                   </a>
@@ -608,11 +657,11 @@
                 class="overflow-hidden rounded-lg border border-[#8FB7AE]/25 bg-[#071C19]/85 backdrop-blur-md shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)]"
               >
                 <div class="flex items-center justify-between gap-4 border-b border-[#8FB7AE]/20 px-4 sm:px-5 py-3 sm:py-3.5">
-                  <p class="font-display text-[0.75rem] font-bold uppercase tracking-[0.15em] text-[#8FB7AE]">
+                  <p class="font-display text-[0.75rem] font-bold uppercase tracking-[0.15em] text-[#8FB7AE]" data-i18n="hero_cap_title">
                     Index of capabilities
                   </p>
                   <p class="nums font-display text-[0.75rem] text-[#8FB7AE]/70">
-                    <span data-stat="services">86</span> service lines
+                    <span data-stat="services">86</span> <span data-i18n="hero_cap_service_lines">service lines</span>
                   </p>
                 </div>
 
@@ -626,7 +675,7 @@
                     class="inline-flex items-center gap-2 font-display text-[0.8125rem] font-bold text-[#D6B36A] transition-colors hover:text-[#F5F0E3]"
                   >
                     <span class="icon text-[#D6B36A]" aria-hidden="true" data-icon="layout-grid"></span>
-                    <span>Open the full catalogue</span>
+                    <span data-i18n="hero_cap_view_all">Open the full catalogue</span>
                     <span class="text-base font-bold">→</span>
                   </a>
                 </div>
@@ -639,43 +688,43 @@
             <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
               <span class="icon text-[#D6B36A] text-xl sm:text-2xl flex-none" aria-hidden="true" data-icon="layers"></span>
               <div class="min-w-0">
-                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-none uppercase tracking-wider font-semibold">Service lines</p>
+                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-none uppercase tracking-wider font-semibold" data-i18n="stat_services_label">Service lines</p>
                 <p class="mt-1 font-display text-[1.4rem] sm:text-[1.75rem] font-bold leading-none text-[#F5F0E3] nums" data-stat="services">86</p>
               </div>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
               <span class="icon text-[#D6B36A] text-xl sm:text-2xl flex-none" aria-hidden="true" data-icon="landmark"></span>
               <div class="min-w-0">
-                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-none uppercase tracking-wider font-semibold">Divisions</p>
+                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-none uppercase tracking-wider font-semibold" data-i18n="stat_divisions_label">Divisions</p>
                 <p class="mt-1 font-display text-[1.4rem] sm:text-[1.75rem] font-bold leading-none text-[#D6B36A] nums" data-stat="divisions">11</p>
               </div>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
               <span class="icon text-[#D6B36A] text-xl sm:text-2xl flex-none" aria-hidden="true" data-icon="users"></span>
               <div class="min-w-0">
-                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-none uppercase tracking-wider font-semibold">Govt Portals</p>
+                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-none uppercase tracking-wider font-semibold" data-i18n="stat_portals_label">Govt Portals</p>
                 <p class="mt-1 font-display text-[1.4rem] sm:text-[1.75rem] font-bold leading-none text-[#8FB7AE] nums">29</p>
               </div>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
               <span class="icon text-[#D6B36A] text-xl sm:text-2xl flex-none" aria-hidden="true" data-icon="shield-check"></span>
               <div class="min-w-0">
-                <p class="text-[0.78125rem] sm:text-[0.875rem] font-bold leading-tight text-[#F5F0E3]">Certified Assistance</p>
-                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-tight">Secure &amp; compliant</p>
+                <p class="text-[0.78125rem] sm:text-[0.875rem] font-bold leading-tight text-[#F5F0E3]" data-i18n="trust_cert_title">Certified Assistance</p>
+                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-tight" data-i18n="trust_cert_sub">Secure &amp; compliant</p>
               </div>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
               <span class="icon text-[#D6B36A] text-xl sm:text-2xl flex-none" aria-hidden="true" data-icon="zap"></span>
               <div class="min-w-0">
-                <p class="text-[0.78125rem] sm:text-[0.875rem] font-bold leading-tight text-[#F5F0E3]">Fast Processing</p>
-                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-tight">Save time everyday</p>
+                <p class="text-[0.78125rem] sm:text-[0.875rem] font-bold leading-tight text-[#F5F0E3]" data-i18n="trust_speed_title">Fast Processing</p>
+                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-tight" data-i18n="trust_speed_sub">Save time everyday</p>
               </div>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
               <span class="icon text-[#D6B36A] text-xl sm:text-2xl flex-none" aria-hidden="true" data-icon="file-check"></span>
               <div class="min-w-0">
-                <p class="text-[0.78125rem] sm:text-[0.875rem] font-bold leading-tight text-[#F5F0E3]">Official Receipts</p>
-                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-tight">Transparent &amp; reliable</p>
+                <p class="text-[0.78125rem] sm:text-[0.875rem] font-bold leading-tight text-[#F5F0E3]" data-i18n="trust_receipt_title">Official Receipts</p>
+                <p class="text-[0.6875rem] sm:text-[0.75rem] text-[#8FB7AE] leading-tight" data-i18n="trust_receipt_sub">Transparent &amp; reliable</p>
               </div>
             </div>
           </div>
@@ -701,15 +750,15 @@
         <div class="shell">
           <div class="section-head grid gap-8 lg:grid-cols-12 lg:gap-12">
             <div class="lg:col-span-7">
-              <h2 id="services-heading">The service catalogue</h2>
-              <p class="measure mt-5 text-[1.0625rem] leading-relaxed text-slate-600">
+              <h2 id="services-heading" data-i18n="cat_heading">The service catalogue</h2>
+              <p class="measure mt-5 text-[1.0625rem] leading-relaxed text-slate-600" data-i18n="cat_subheading">
                 Eighty-six service lines across eleven divisions, drawn from the
                 programmes, forms and institutions our counter handles every day.
                 Filter by division, or search by what you need done.
               </p>
             </div>
             <div class="lg:col-span-5">
-              <label for="catalogue-search" class="label">Search the catalogue</label>
+              <label for="catalogue-search" class="label" data-i18n="cat_search_label">Search the catalogue</label>
               <div class="relative mt-2" data-search-container>
                 <span
                   class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[1.125rem] text-slate-400"
@@ -723,13 +772,14 @@
                   placeholder="Aadhaar, PAN, Passport, 7/12, Scholarship, Police…"
                   autocomplete="off"
                   data-catalogue-search
+                  data-i18n-placeholder="cat_search_placeholder"
                 />
                 <button
                   type="button"
                   class="absolute right-1.5 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded text-slate-500 transition-colors hover:bg-slate-100 hover:text-ink-900"
                   data-clear-search
                 >
-                  <span class="sr-only">Clear the search</span>
+                  <span class="sr-only" data-i18n="cat_clear_search">Clear the search</span>
                   <span class="icon" aria-hidden="true" data-icon="x"></span>
                 </button>
 
@@ -757,7 +807,7 @@
           <!-- Division filter -->
           <div class="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filter by division">
             <button type="button" class="pill" aria-pressed="true" data-filter="all">
-              <span>All divisions</span>
+              <span data-i18n="cat_filter_all">All divisions</span>
             </button>
             <!--@SLOT:FILTER_PILLS-->
           </div>
@@ -777,18 +827,18 @@
               aria-hidden="true"
               data-icon="search"
             ></span>
-            <h3 class="mt-5">No service matches that search</h3>
-            <p class="mx-auto mt-2 max-w-md text-[0.9375rem] text-slate-600">
+            <h3 class="mt-5" data-i18n="cat_empty_title">No service matches that search</h3>
+            <p class="mx-auto mt-2 max-w-md text-[0.9375rem] text-slate-600" data-i18n="cat_empty_desc">
               We may still handle it. Send the requirement and the service owner
               will confirm within one working day.
             </p>
             <div class="mt-6 flex flex-wrap justify-center gap-3">
               <a href="#contact" class="btn btn-primary btn-sm">
-                <span>Send the requirement</span>
+                <span data-i18n="cat_empty_btn">Send the requirement</span>
                 <span class="icon" aria-hidden="true" data-icon="arrow-right"></span>
               </a>
               <button type="button" class="btn btn-outline btn-sm" data-clear-search>
-                <span>Clear the search</span>
+                <span data-i18n="cat_clear_search">Clear the search</span>
               </button>
             </div>
           </div>
@@ -804,10 +854,10 @@
             <div class="lg:col-span-8">
               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-900 border border-orange-200 text-[0.8125rem] font-bold mb-3">
                 <span class="inline-block w-2 h-2 rounded-full bg-orange-600"></span>
-                <span>Citizen Document Verification Desk</span>
+                <span data-i18n="docs_eyebrow">Citizen Document Verification Desk</span>
               </div>
-              <h2 id="documents-heading">Required Documents Checklist</h2>
-              <p class="measure mt-3 text-[1.0625rem] leading-relaxed text-slate-600">
+              <h2 id="documents-heading" data-i18n="docs_heading">Required Documents Checklist</h2>
+              <p class="measure mt-3 text-[1.0625rem] leading-relaxed text-slate-600" data-i18n="docs_subheading">
                 Check exact paperwork requirements before traveling to our counter or applying online. Avoid rejected applications and multiple trips with our verified documentation dossiers.
               </p>
             </div>
@@ -815,7 +865,7 @@
               <a href="https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20can%20you%20verify%20my%20documents%20before%20I%20visit?" 
                  target="_blank" rel="noopener noreferrer" 
                  class="btn btn-signal inline-flex items-center gap-2 shadow-sm">
-                <span>Verify Papers on WhatsApp</span>
+                <span data-i18n="docs_whatsapp_btn">Verify Papers on WhatsApp</span>
                 <span class="icon" aria-hidden="true" data-icon="phone"></span>
               </a>
             </div>
@@ -834,10 +884,10 @@
         <div class="shell">
           <div class="section-head grid gap-8 lg:grid-cols-12 lg:gap-12">
             <div class="lg:col-span-6">
-              <h2 id="process-heading">How a file moves through the counter</h2>
+              <h2 id="process-heading" data-i18n="process_heading">How a file moves through the counter</h2>
             </div>
             <div class="lg:col-span-6">
-              <p class="text-[1.0625rem] leading-relaxed text-slate-600">
+              <p class="text-[1.0625rem] leading-relaxed text-slate-600" data-i18n="process_subheading">
                 Every request — a stamp, a policy, a server — is handled the same
                 way. The steps are written down before we start, so you always know
                 what is outstanding and what happens next.
@@ -864,8 +914,8 @@
         <div class="shell">
           <div class="section-head grid gap-8 lg:grid-cols-12 lg:gap-12">
             <div class="lg:col-span-7">
-              <h2 id="capabilities-heading">Credentials and working standards</h2>
-              <p class="measure mt-5 text-[1.0625rem] leading-relaxed text-slate-600">
+              <h2 id="capabilities-heading" data-i18n="cap_heading">Credentials and working standards</h2>
+              <p class="measure mt-5 text-[1.0625rem] leading-relaxed text-slate-600" data-i18n="cap_subheading">
                 The counter is authorised to deliver the services it lists, and the
                 operating standard behind each one is the same: check the live
                 requirement, file against the current portal, keep the receipt.
@@ -882,8 +932,8 @@
 
             <div class="lg:col-span-5">
               <div class="rounded-lg border border-slate-200 bg-slate-50 p-7">
-                <h3>Portals and systems we work against</h3>
-                <p class="mt-2.5 text-[0.9375rem] leading-relaxed text-slate-600">
+                <h3 data-i18n="cap_portals_title">Portals and systems we work against</h3>
+                <p class="mt-2.5 text-[0.9375rem] leading-relaxed text-slate-600" data-i18n="cap_portals_sub">
                   Requirements change between versions. We check the live portal
                   before filing, not from memory.
                 </p>
@@ -893,7 +943,7 @@
               </div>
 
               <div class="mt-6 rounded-lg border border-slate-200 p-7">
-                <h3>Sectors we work with</h3>
+                <h3 data-i18n="cap_sectors_title">Sectors we work with</h3>
                 <ul class="mt-5 space-y-3">
                   <!--@SLOT:SECTORS-->
                 </ul>
@@ -909,7 +959,7 @@
       <section id="faq" class="section scroll-mt-28 border-t border-slate-200 bg-slate-50" aria-labelledby="faq-heading">
         <div class="shell shell-narrow">
           <div class="section-head">
-            <h2 id="faq-heading">Questions people ask at the counter</h2>
+            <h2 id="faq-heading" data-i18n="faq_heading">Questions people ask at the counter</h2>
           </div>
           <div class="divide-y divide-slate-200 border-y border-slate-200">
             <!--@SLOT:FAQ-->
@@ -925,8 +975,8 @@
           <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <!-- Form -->
             <div class="lg:col-span-7">
-              <h2 id="contact-heading">Send an inquiry</h2>
-              <p class="measure mt-5 text-[1.0625rem] leading-relaxed text-slate-600">
+              <h2 id="contact-heading" data-i18n="form_heading">Send an inquiry</h2>
+              <p class="measure mt-5 text-[1.0625rem] leading-relaxed text-slate-600" data-i18n="form_subheading">
                 Tell us the service and the deadline. The service owner replies
                 within one working day — with what is needed, what it costs, and
                 when it will be done.
@@ -935,7 +985,7 @@
               <form class="mt-9" novalidate data-inquiry-form>
                 <div class="grid gap-5 sm:grid-cols-2">
                   <div>
-                    <label for="inq-name" class="label">Full name</label>
+                    <label for="inq-name" class="label" data-i18n="form_label_name">Full name</label>
                     <input
                       class="field mt-2"
                       id="inq-name"
@@ -948,7 +998,7 @@
                     <p id="inq-name-error" class="mt-1.5 hidden text-[0.8125rem] text-critical-600" data-error-for="name"></p>
                   </div>
                   <div>
-                    <label for="inq-phone" class="label">Phone number</label>
+                    <label for="inq-phone" class="label" data-i18n="form_label_phone">Phone number</label>
                     <input
                       class="field mt-2"
                       id="inq-phone"
@@ -962,7 +1012,7 @@
                     <p id="inq-phone-error" class="mt-1.5 hidden text-[0.8125rem] text-critical-600" data-error-for="phone"></p>
                   </div>
                   <div class="sm:col-span-2">
-                    <label for="inq-email" class="label">Email address</label>
+                    <label for="inq-email" class="label" data-i18n="form_label_email">Email address</label>
                     <input
                       class="field mt-2"
                       id="inq-email"
@@ -974,7 +1024,7 @@
                     <p id="inq-email-error" class="mt-1.5 hidden text-[0.8125rem] text-critical-600" data-error-for="email"></p>
                   </div>
                   <div>
-                    <label for="inq-service" class="label">Service required</label>
+                    <label for="inq-service" class="label" data-i18n="form_label_service">Service required</label>
                     <select
                       class="field mt-2"
                       id="inq-service"
@@ -987,17 +1037,17 @@
                     <p id="inq-service-error" class="mt-1.5 hidden text-[0.8125rem] text-critical-600" data-error-for="service"></p>
                   </div>
                   <div>
-                    <label for="inq-urgency" class="label">Needed by</label>
+                    <label for="inq-urgency" class="label" data-i18n="form_label_urgency">Needed by</label>
                     <select class="field mt-2" id="inq-urgency" name="urgency">
-                      <option value="flexible">No fixed date</option>
-                      <option value="one-week">Within a week</option>
-                      <option value="fortnight">Within a fortnight</option>
-                      <option value="month">Within a month</option>
-                      <option value="urgent">Urgent — within 48 hours</option>
+                      <option value="flexible" data-i18n="form_urg_flexible">No fixed date</option>
+                      <option value="one-week" data-i18n="form_urg_week">Within a week</option>
+                      <option value="fortnight" data-i18n="form_urg_fortnight">Within a fortnight</option>
+                      <option value="month" data-i18n="form_urg_month">Within a month</option>
+                      <option value="urgent" data-i18n="form_urg_urgent">Urgent — within 48 hours</option>
                     </select>
                   </div>
                   <div class="sm:col-span-2">
-                    <label for="inq-message" class="label">What is required</label>
+                    <label for="inq-message" class="label" data-i18n="form_label_message">What is required</label>
                     <textarea
                       class="field mt-2 min-h-32 resize-y"
                       id="inq-message"
@@ -1010,10 +1060,10 @@
 
                 <div class="mt-6 flex flex-wrap items-center gap-4">
                   <button type="submit" class="btn btn-primary" data-submit>
-                    <span data-submit-label>Send the inquiry</span>
+                    <span data-submit-label data-i18n="form_btn_submit">Send the inquiry</span>
                     <span class="icon" aria-hidden="true" data-icon="send"></span>
                   </button>
-                  <p class="text-[0.8125rem] text-slate-500">
+                  <p class="text-[0.8125rem] text-slate-500" data-i18n="form_privacy_note">
                     We reply within one working day. Your details stay with the
                     service owner.
                   </p>
@@ -1035,7 +1085,7 @@
             <!-- Channels -->
             <div class="lg:col-span-5">
               <div class="rounded-lg border border-slate-200 bg-slate-50 p-7">
-                <h3 class="text-[1.125rem]">Reach the counter directly</h3>
+                <h3 class="text-[1.125rem]" data-i18n="contact_reach_title">Reach the counter directly</h3>
 
                 <dl class="mt-6 space-y-5">
                   <div class="flex gap-4">
@@ -1045,10 +1095,10 @@
                       data-icon="map-pin"
                     ></span>
                     <div>
-                      <dt class="font-display text-[0.9375rem] font-semibold text-ink-900">
+                      <dt class="font-display text-[0.9375rem] font-semibold text-ink-900" data-i18n="contact_desk_address_label">
                         Counter address
                       </dt>
-                      <dd class="mt-1 text-[0.9375rem] leading-relaxed text-slate-600">
+                      <dd class="mt-1 text-[0.9375rem] leading-relaxed text-slate-600" data-i18n="contact_desk_address_val">
                         Jambut Bk, Tal. Sangamner,<br />Dist. Ahmednagar, Maharashtra 422622
                       </dd>
                     </div>
@@ -1061,7 +1111,7 @@
                       data-icon="phone"
                     ></span>
                     <div>
-                      <dt class="font-display text-[0.9375rem] font-semibold text-ink-900">
+                      <dt class="font-display text-[0.9375rem] font-semibold text-ink-900" data-i18n="contact_phone_label">
                         Phone &amp; WhatsApp
                       </dt>
                       <dd class="mt-1">
@@ -1079,7 +1129,7 @@
                       data-icon="mail"
                     ></span>
                     <div>
-                      <dt class="font-display text-[0.9375rem] font-semibold text-ink-900">
+                      <dt class="font-display text-[0.9375rem] font-semibold text-ink-900" data-i18n="contact_email_label">
                         Email
                       </dt>
                       <dd class="mt-1">
@@ -1097,7 +1147,7 @@
                       data-icon="clock"
                     ></span>
                     <div>
-                      <dt class="font-display text-[0.9375rem] font-semibold text-ink-900">
+                      <dt class="font-display text-[0.9375rem] font-semibold text-ink-900" data-i18n="contact_hours_label">
                         Counter hours
                       </dt>
                       <dd class="mt-1">
@@ -1143,27 +1193,27 @@
                 </svg>
               </span>
               <span class="flex flex-col leading-none">
-                <span class="font-display text-[1.125rem] font-bold tracking-tight text-[#F5F0E3]">Amayra Computers</span>
-                <span class="mt-0.5 font-display text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-[#D6B36A]">Jambut Bk · Sangamner</span>
+                <span class="font-display text-[1.125rem] font-bold tracking-tight text-[#F5F0E3]" data-i18n="brand_name">Amayra Computers</span>
+                <span class="mt-0.5 font-display text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-[#D6B36A]" data-i18n="brand_subtitle">Jambut Bk · Sangamner</span>
               </span>
             </div>
-            <p class="mt-4 sm:mt-5 max-w-sm text-[0.875rem] sm:text-[0.9375rem] leading-relaxed text-[#8FB7AE]/90">
+            <p class="mt-4 sm:mt-5 max-w-sm text-[0.875rem] sm:text-[0.9375rem] leading-relaxed text-[#8FB7AE]/90" data-i18n="footer_tagline">
               Authorized government services, insurance, credit, travel and enterprise
               technology support, delivered from one physical counter in Jambut Bk, Sangamner.
             </p>
             <div class="mt-5 sm:mt-6 grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-3">
               <a href="tel:+919766174974" class="inline-flex items-center justify-center gap-1.5 rounded border border-[#8FB7AE]/40 bg-[#071C19]/60 backdrop-blur-sm px-3 py-2.5 font-display text-[0.8125rem] sm:text-[0.875rem] font-semibold text-[#F5F0E3] hover:border-[#D6B36A] hover:text-[#D6B36A] transition-all text-center">
                 <span class="icon text-[#D6B36A]" aria-hidden="true" data-icon="phone"></span>
-                <span class="truncate">Call counter</span>
+                <span class="truncate" data-i18n="footer_call_counter">Call counter</span>
               </a>
               <a href="#contact" class="inline-flex items-center justify-center gap-1.5 rounded bg-[#D6B36A] px-3 py-2.5 font-display text-[0.8125rem] sm:text-[0.875rem] font-bold text-[#071C19] hover:bg-[#e2c482] transition-all text-center">
-                <span class="truncate">Request callback</span>
+                <span class="truncate" data-i18n="footer_request_callback">Request callback</span>
                 <span>→</span>
               </a>
             </div>
             <div class="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-[#8FB7AE]/20 text-[0.8125rem] text-[#8FB7AE] flex items-center gap-2">
               <span class="h-2 w-2 rounded-full bg-emerald-400 flex-none animate-pulse"></span>
-              <span>Sangamner Counter · Walk-ins Welcome</span>
+              <span data-i18n="footer_walkin_badge">Sangamner Counter · Walk-ins Welcome</span>
             </div>
           </div>
 
@@ -1171,7 +1221,7 @@
           <nav class="lg:col-span-8" aria-label="Site directory">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-8 gap-y-7 sm:gap-y-8">
               <div>
-                <h4 class="font-display text-[0.75rem] sm:text-[0.8125rem] font-bold uppercase tracking-wider text-[#D6B36A] border-b border-[#8FB7AE]/20 pb-2 mb-2.5">
+                <h4 class="font-display text-[0.75rem] sm:text-[0.8125rem] font-bold uppercase tracking-wider text-[#D6B36A] border-b border-[#8FB7AE]/20 pb-2 mb-2.5" data-i18n="footer_popular_services">
                   Popular Services
                 </h4>
                 <ul class="space-y-1.5 list-none p-0 m-0">
@@ -1179,7 +1229,7 @@
                 </ul>
               </div>
               <div>
-                <h4 class="font-display text-[0.75rem] sm:text-[0.8125rem] font-bold uppercase tracking-wider text-[#D6B36A] border-b border-[#8FB7AE]/20 pb-2 mb-2.5">
+                <h4 class="font-display text-[0.75rem] sm:text-[0.8125rem] font-bold uppercase tracking-wider text-[#D6B36A] border-b border-[#8FB7AE]/20 pb-2 mb-2.5" data-i18n="footer_counter_process">
                   Counter &amp; Process
                 </h4>
                 <ul class="space-y-1.5 list-none p-0 m-0">
@@ -1187,7 +1237,7 @@
                 </ul>
               </div>
               <div>
-                <h4 class="font-display text-[0.75rem] sm:text-[0.8125rem] font-bold uppercase tracking-wider text-[#D6B36A] border-b border-[#8FB7AE]/20 pb-2 mb-2.5">
+                <h4 class="font-display text-[0.75rem] sm:text-[0.8125rem] font-bold uppercase tracking-wider text-[#D6B36A] border-b border-[#8FB7AE]/20 pb-2 mb-2.5" data-i18n="footer_civic_education">
                   Civic &amp; Education
                 </h4>
                 <ul class="space-y-1.5 list-none p-0 m-0">
@@ -1195,7 +1245,7 @@
                 </ul>
               </div>
               <div>
-                <h4 class="font-display text-[0.75rem] sm:text-[0.8125rem] font-bold uppercase tracking-wider text-[#D6B36A] border-b border-[#8FB7AE]/20 pb-2 mb-2.5">
+                <h4 class="font-display text-[0.75rem] sm:text-[0.8125rem] font-bold uppercase tracking-wider text-[#D6B36A] border-b border-[#8FB7AE]/20 pb-2 mb-2.5" data-i18n="footer_business_it">
                   Business &amp; IT
                 </h4>
                 <ul class="space-y-1.5 list-none p-0 m-0">
@@ -1207,7 +1257,7 @@
         </div>
 
         <div class="mt-8 sm:mt-12 border-t border-[#8FB7AE]/20 pt-6 sm:pt-8">
-          <p class="max-w-4xl text-[0.78125rem] sm:text-[0.8125rem] leading-relaxed text-[#8FB7AE]/80">
+          <p class="max-w-4xl text-[0.78125rem] sm:text-[0.8125rem] leading-relaxed text-[#8FB7AE]/80" data-i18n="footer_disclaimer">
             Amayra Computers is an authorised service provider and
             agent. Government schemes, portals and policies are administered by
             the relevant public authority; service names and logos referenced
@@ -1221,8 +1271,7 @@
           class="mt-8 sm:mt-10 flex flex-col gap-4 border-t border-[#8FB7AE]/20 pt-6 sm:pt-8 sm:flex-row sm:items-center sm:justify-between"
         >
           <p class="text-[0.78125rem] sm:text-[0.8125rem] text-[#8FB7AE]/70">
-            &copy; <span data-year>2026</span> Amayra Computers. All rights
-            reserved.
+            &copy; <span data-year>2026</span> <span data-i18n="brand_name">Amayra Computers</span>. <span data-i18n="footer_rights">All rights reserved.</span>
           </p>
           <ul class="flex flex-wrap gap-x-5 gap-y-2">
             <!--@SLOT:FOOTER_LEGAL-->
@@ -1231,6 +1280,7 @@
       </div>
     </footer>
 
+    <!--@SLOT:I18N_DATA-->
     <!--@SLOT:INLINE_JS-->
   </body>
 </html>

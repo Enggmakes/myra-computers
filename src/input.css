@@ -900,3 +900,92 @@ footer {
     color: #555;
   }
 }
+
+/* ==========================================================================
+   Bilingual & Marathi (मराठी) Typography & Switcher States
+   ========================================================================== */
+
+:lang(mr), body.lang-mr, html[lang="mr"] body {
+  font-family: "Noto Sans Devanagari", var(--font-sans);
+  letter-spacing: normal !important;
+}
+
+body.lang-mr h1,
+body.lang-mr h2,
+body.lang-mr h3,
+body.lang-mr h4,
+body.lang-mr .font-display,
+html[lang="mr"] h1,
+html[lang="mr"] h2,
+html[lang="mr"] h3,
+html[lang="mr"] h4,
+html[lang="mr"] .font-display {
+  font-family: "Noto Sans Devanagari", var(--font-display);
+  letter-spacing: 0 !important;
+}
+
+/* Language Switcher Button Active States */
+.lang-switcher .lang-btn {
+  cursor: pointer;
+  user-select: none;
+}
+
+.lang-switcher .lang-btn.active {
+  background-color: #17212B !important;
+  color: #F5F0E3 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.lang-btn-mobile {
+  cursor: pointer;
+  user-select: none;
+}
+
+.lang-btn-mobile.active {
+  background-color: #D6B36A !important;
+  color: #071C19 !important;
+}
+
+/* ==========================================================================
+   Header Layout: Leftmost Brand, Rightmost Switch, Generous Gap & No-wrap Text
+   ========================================================================== */
+.header-container {
+  width: 100%;
+  padding-left: clamp(1rem, 2.5vw, 2.5rem);
+  padding-right: clamp(1rem, 2.5vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.header-brand {
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+
+.header-nav-link {
+  white-space: nowrap !important;
+}
+
+.header-cta-btn {
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  margin-right: 0.75rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .header-actions {
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header-actions {
+    gap: 2.25rem;
+  }
+}
+

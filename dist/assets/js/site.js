@@ -373,7 +373,35 @@ const INTENTS = {
   "money": ["money-transfer", "domestic-transfer"],
   "transfer": ["money-transfer", "domestic-transfer"],
   "remittance": ["international-remittance"],
-  "upi": ["upi-assistance"]
+  "upi": ["upi-assistance"],
+
+  // Marathi (मराठी) Common Citizen Intents
+  "आधार": ["myaadhaar", "pvc-aadhaar"],
+  "पॅन": ["pan-card", "pan-correction"],
+  "पासपोर्ट": ["passport-fresh", "passport-renewal"],
+  "७/१२": ["7-12-extract"],
+  "सातबारा": ["7-12-extract"],
+  "८अ": ["7-12-extract"],
+  "फेरफार": ["7-12-extract"],
+  "दाखला": ["aaple-sarkar", "caste-validity"],
+  "उत्पन्न": ["aaple-sarkar"],
+  "जात": ["caste-validity"],
+  "विमा": ["lic-life", "star-health", "vehicle-insurance", "pm-crop-insurance"],
+  "कर्ज": ["mudra-loan", "personal-loan", "business-loan"],
+  "बँक": ["money-transfer", "domestic-transfer", "cash-services"],
+  "पैसे": ["money-transfer", "domestic-transfer", "cash-services"],
+  "झेरॉक्स": ["printing", "lamination-binding"],
+  "प्रिंट": ["printing", "application-printing"],
+  "शिष्यवृत्ती": ["scholarship-forms"],
+  "परिवहन": ["rto-service"],
+  "लायसन्स": ["rto-service"],
+  "गाडी": ["rto-service", "vehicle-insurance"],
+  "रेशन": ["ration-card"],
+  "शेतकरी": ["pm-kisan", "pm-crop-insurance"],
+  "आरोग्य": ["ayushman-bharat", "star-health"],
+  "पोलीस": ["police-verification"],
+  "मतदार": ["csc", "aaple-sarkar"],
+  "पेंशन": ["epfo"]
 };
 
 /* ------------------------------------------------------------------ */
@@ -408,7 +436,7 @@ function foldVowels(s) {
 function tokenize(text) {
   return (text || "")
     .toLowerCase()
-    .replace(/[^a-z0-9\/\s]/g, " ")
+    .replace(/[^a-z0-9\u0900-\u097F\/\s]/g, " ")
     .split(/\s+/)
     .filter(Boolean);
 }
@@ -462,18 +490,25 @@ function calculateTileScore(tile, query) {
   const rawKeywords = (tile.dataset.keywords || "").toLowerCase();
   const keywordsTokens = tokenize(rawKeywords);
 
+  const mrTitle = (tile.dataset.mrName || "").toLowerCase();
+  const mrTitleTokens = tokenize(mrTitle);
+  const mrDesc = (tile.dataset.mrDesc || "").toLowerCase();
+  const mrKeywords = (tile.dataset.mrKeywords || "").toLowerCase();
+  const mrKeywordsTokens = tokenize(mrKeywords);
+  const mrBadge = (tile.dataset.mrBadge || "").toLowerCase();
+
   let score = 0;
 
   // 1. EXACT / FOLDED TITLE MATCH (Highest Priority)
-  if (title === rawQ) score += 10000;
+  if (title === rawQ || mrTitle === rawQ) score += 10000;
   else if (foldTitle === foldQ) score += 9500;
-  else if (title.startsWith(rawQ)) score += 6000;
+  else if (title.startsWith(rawQ) || mrTitle.startsWith(rawQ)) score += 6000;
   else if (foldTitle.startsWith(foldQ)) score += 5500;
 
   // 2. TITLE TOKENS MATCH
-  if (titleTokens.includes(rawQ)) score += 4000;
+  if (titleTokens.includes(rawQ) || mrTitleTokens.includes(rawQ)) score += 4000;
   else if (titleTokens.some((w) => foldVowels(w) === foldQ)) score += 3800;
-  else if (titleTokens.some((w) => w.startsWith(rawQ))) score += 2500;
+  else if (titleTokens.some((w) => w.startsWith(rawQ)) || mrTitleTokens.some((w) => w.startsWith(rawQ))) score += 2500;
   else if (titleTokens.some((w) => foldVowels(w).startsWith(foldQ))) score += 2200;
 
   // 3. SERVICE ID MATCH
@@ -492,23 +527,23 @@ function calculateTileScore(tile, query) {
     else if (keywordsTokens.includes(target)) score += 1000;
   }
 
-  // 5. OFFICIAL BADGE MATCH (e.g. "UIDAI Official", "Income Tax Dept", "Passport Seva")
+  // 5. OFFICIAL BADGE MATCH
   const badgeTokens = tokenize(badge);
-  if (badgeTokens.includes(rawQ) || badgeTokens.some((w) => foldVowels(w) === foldQ)) score += 2000;
+  if (badgeTokens.includes(rawQ) || mrBadge.includes(rawQ) || badgeTokens.some((w) => foldVowels(w) === foldQ)) score += 2000;
   else if (badge.startsWith(rawQ) || foldBadge.startsWith(foldQ)) score += 1500;
   else if (badge.includes(rawQ) || foldBadge.includes(foldQ)) score += 800;
 
-  // 6. EXACT KEYWORD MATCH (Strict token boundary, no random substring)
-  if (keywordsTokens.includes(rawQ) || keywordsTokens.some((w) => foldVowels(w) === foldQ)) {
+  // 6. KEYWORDS MATCH
+  if (keywordsTokens.includes(rawQ) || mrKeywordsTokens.includes(rawQ) || keywordsTokens.some((w) => foldVowels(w) === foldQ)) {
     score += 1200;
-  } else if (rawQ.length >= 3 && keywordsTokens.some((w) => w.startsWith(rawQ) || foldVowels(w).startsWith(foldQ))) {
+  } else if (rawQ.length >= 2 && (keywordsTokens.some((w) => w.startsWith(rawQ) || foldVowels(w).startsWith(foldQ)) || mrKeywordsTokens.some((w) => w.startsWith(rawQ)))) {
     score += 400;
   }
 
-  // 7. WHOLE-WORD DESCRIPTION MATCH (Only when query >= 4 chars, low weight)
-  if (rawQ.length >= 4) {
+  // 7. WHOLE-WORD DESCRIPTION MATCH
+  if (rawQ.length >= 3) {
     const descTokens = tokenize(desc);
-    if (descTokens.includes(rawQ) || descTokens.some((w) => foldVowels(w) === foldQ)) {
+    if (descTokens.includes(rawQ) || mrDesc.includes(rawQ) || descTokens.some((w) => foldVowels(w) === foldQ)) {
       score += 200;
     }
   }
@@ -589,15 +624,15 @@ function renderLiveSearchResults(query) {
 
   topMatches.forEach(({ tile }) => {
     const id = tile.dataset.service || tile.id.replace("service-", "");
-    const title = tile.dataset.displayName || tile.querySelector("h3")?.textContent || "";
-    const desc = tile.dataset.desc || tile.querySelector("p")?.textContent || "";
+    const title = tile.querySelector(".svc-name")?.textContent || tile.dataset.displayName || "";
+    const desc = tile.querySelector(".svc-desc")?.textContent || tile.dataset.desc || "";
     const division = tile.dataset.division || "government";
-    const divisionName = tile.dataset.divisionName || "Civic";
-    const badge = tile.dataset.badge || "Official";
+    const divisionName = tile.querySelector(".svc-div-name")?.textContent || tile.dataset.divisionName || "Civic";
+    const badge = tile.querySelector(".svc-badge")?.textContent || tile.dataset.badge || "Official";
     const badgeClass = tile.dataset.badgeClass || "badge-gov";
     const iconName = tile.dataset.serviceIcon || tile.dataset.icon || "file-text";
     const portalUrl = tile.dataset.portalUrl || "";
-    const actionLabel = tile.dataset.actionLabel || "Open Portal";
+    const actionLabel = tile.querySelector(".svc-action-label")?.textContent || tile.dataset.actionLabel || "Open Portal";
     const themeBg = DIVISION_THEMES[division] || "bg-orange-50 text-orange-600 border border-orange-200";
 
     html += `
@@ -796,10 +831,13 @@ function applyDivisionFilter() {
     if (activeDivision !== "all") {
       const label =
         document.querySelector(`[data-filter="${activeDivision}"] span`)?.textContent ?? "this division";
-      resultCount.textContent =
-        visible === 1 ? `1 service in ${label}` : `${visible} services in ${label}`;
+      resultCount.textContent = currentLang === "mr"
+        ? `${label} मधील ${visible} सेवा दाखवत आहे`
+        : (visible === 1 ? `1 service in ${label}` : `${visible} services in ${label}`);
     } else {
-      resultCount.textContent = `Showing all ${tiles.length} services`;
+      resultCount.textContent = currentLang === "mr"
+        ? `सर्व ${tiles.length} सेवा दाखवत आहे`
+        : `Showing all ${tiles.length} services`;
     }
   }
 
@@ -949,3 +987,410 @@ form?.addEventListener("submit", (e) => {
 
 const year = document.querySelector("[data-year]");
 if (year) year.textContent = String(new Date().getFullYear());
+
+/* ------------------------------------------------------------------ */
+/* Bilingual Marathi (मराठी) / English (EN) Language Switcher         */
+/* ------------------------------------------------------------------ */
+
+let currentLang = "en";
+
+function setLanguage(lang) {
+  currentLang = lang === "mr" ? "mr" : "en";
+  const isMr = currentLang === "mr";
+  const i18n = window.AMAYRA_I18N || {};
+
+  // 1. Root language attribute and font styling class
+  document.documentElement.lang = isMr ? "mr" : "en";
+  document.body.classList.toggle("lang-mr", isMr);
+
+  // 2. Desktop & Mobile Switcher Buttons State
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    const active = btn.dataset.lang === currentLang;
+    btn.classList.toggle("active", active);
+    btn.classList.toggle("bg-white", active);
+    btn.classList.toggle("text-slate-900", active);
+    btn.classList.toggle("shadow-sm", active);
+    btn.classList.toggle("text-slate-600", !active);
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+
+  document.querySelectorAll(".lang-btn-mobile").forEach((btn) => {
+    const active = btn.dataset.lang === currentLang;
+    btn.classList.toggle("active", active);
+    btn.classList.toggle("bg-white", active);
+    btn.classList.toggle("text-slate-900", active);
+    btn.classList.toggle("shadow-sm", active);
+    btn.classList.toggle("text-slate-600", !active);
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+
+  // 3. Elements with data-i18n
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.dataset.i18n;
+    if (el.dataset.i18nEn === undefined) {
+      el.dataset.i18nEn = el.innerHTML;
+    }
+    if (isMr) {
+      if (i18n.mrUI && i18n.mrUI[key]) {
+        el.innerHTML = i18n.mrUI[key];
+      }
+    } else {
+      if (el.dataset.i18nEn !== undefined) {
+        el.innerHTML = el.dataset.i18nEn;
+      }
+    }
+  });
+
+  // 4. Placeholders with data-i18n-placeholder
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.dataset.i18nPlaceholder;
+    if (el.dataset.placeholderEn === undefined) {
+      el.dataset.placeholderEn = el.placeholder;
+    }
+    if (isMr) {
+      if (i18n.mrUI && i18n.mrUI[key]) {
+        el.placeholder = i18n.mrUI[key];
+      }
+    } else {
+      if (el.dataset.placeholderEn !== undefined) {
+        el.placeholder = el.dataset.placeholderEn;
+      }
+    }
+  });
+
+  // 5. Service Cards (Catalogue)
+  document.querySelectorAll("[data-service]").forEach((tile) => {
+    const nameEl = tile.querySelector(".svc-name");
+    const descEl = tile.querySelector(".svc-desc");
+    const audEl = tile.querySelector(".svc-audience-text");
+    const badgeEl = tile.querySelector(".svc-badge");
+    const actionEl = tile.querySelector(".svc-action-label");
+    const portalEl = tile.querySelector(".svc-portal-name");
+
+    if (nameEl) {
+      if (nameEl.dataset.en === undefined) nameEl.dataset.en = nameEl.textContent;
+      nameEl.textContent = isMr ? (tile.dataset.mrName || nameEl.dataset.en) : nameEl.dataset.en;
+    }
+    if (descEl) {
+      if (descEl.dataset.en === undefined) descEl.dataset.en = descEl.textContent;
+      descEl.textContent = isMr ? (tile.dataset.mrDesc || descEl.dataset.en) : descEl.dataset.en;
+    }
+    if (audEl) {
+      if (audEl.dataset.en === undefined) audEl.dataset.en = audEl.textContent;
+      audEl.textContent = isMr ? (tile.dataset.mrAudience || audEl.dataset.en) : audEl.dataset.en;
+    }
+    if (badgeEl) {
+      if (badgeEl.dataset.en === undefined) badgeEl.dataset.en = badgeEl.textContent;
+      badgeEl.textContent = isMr ? (tile.dataset.mrBadge || badgeEl.dataset.en) : badgeEl.dataset.en;
+    }
+    if (actionEl) {
+      if (actionEl.dataset.en === undefined) actionEl.dataset.en = actionEl.textContent;
+      actionEl.textContent = isMr ? (tile.dataset.mrAction || actionEl.dataset.en) : actionEl.dataset.en;
+    }
+    if (portalEl) {
+      if (portalEl.dataset.en === undefined) portalEl.dataset.en = portalEl.textContent;
+      portalEl.textContent = isMr ? (tile.dataset.mrPortal || portalEl.dataset.en) : portalEl.dataset.en;
+    }
+  });
+
+  // 6. Hero Service Index items
+  document.querySelectorAll("[data-hero-svc]").forEach((item) => {
+    const svcId = item.dataset.heroSvc;
+    const mrSvc = i18n.mrServices && i18n.mrServices[svcId];
+    const nameEl = item.querySelector(".hero-svc-name");
+    const badgeEl = item.querySelector(".hero-svc-badge");
+    if (nameEl) {
+      if (nameEl.dataset.en === undefined) nameEl.dataset.en = nameEl.textContent;
+      nameEl.textContent = isMr ? (mrSvc?.name || nameEl.dataset.en) : nameEl.dataset.en;
+    }
+    if (badgeEl) {
+      if (badgeEl.dataset.en === undefined) badgeEl.dataset.en = badgeEl.textContent;
+      badgeEl.textContent = isMr ? (mrSvc?.badgeText || badgeEl.dataset.en) : badgeEl.dataset.en;
+    }
+  });
+
+  // 7. Division Catalogue headers and blurbs
+  document.querySelectorAll("[data-division-group]").forEach((sec) => {
+    const divId = sec.dataset.divisionGroup;
+    const mrDiv = i18n.mrDivisions && i18n.mrDivisions[divId];
+    const headTitle = sec.querySelector(".div-head-title");
+    const headSub = sec.querySelector(".div-head-sub");
+    const headBranch = sec.querySelector(".div-head-branch");
+    const blurbEl = sec.querySelector(".division-blurb");
+    const countText = sec.querySelector(".div-count-text");
+
+    if (headTitle) {
+      if (headTitle.dataset.en === undefined) headTitle.dataset.en = headTitle.textContent;
+      headTitle.textContent = isMr ? (mrDiv?.name || headTitle.dataset.en) : headTitle.dataset.en;
+    }
+    if (headSub) {
+      if (headSub.dataset.en === undefined) headSub.dataset.en = headSub.textContent;
+      headSub.textContent = isMr ? "सेंट्रल मिनी बँक" : headSub.dataset.en;
+    }
+    if (headBranch) {
+      if (headBranch.dataset.en === undefined) headBranch.dataset.en = headBranch.textContent;
+      headBranch.textContent = isMr ? (mrDiv?.shortName ? `${mrDiv.shortName} विभाग` : headBranch.dataset.en) : headBranch.dataset.en;
+    }
+    if (blurbEl) {
+      if (blurbEl.dataset.en === undefined) blurbEl.dataset.en = blurbEl.textContent;
+      blurbEl.textContent = isMr ? (mrDiv?.blurb || blurbEl.dataset.en) : blurbEl.dataset.en;
+    }
+    if (countText) {
+      countText.textContent = isMr ? "सेवा" : "services";
+    }
+  });
+
+  // 8. Division Strip Cards (Hero / Overview)
+  document.querySelectorAll("[data-div-strip]").forEach((strip) => {
+    const divId = strip.dataset.divStrip;
+    const mrDiv = i18n.mrDivisions && i18n.mrDivisions[divId];
+    const stripName = strip.querySelector(".div-strip-name");
+    const stripSub = strip.querySelector(".div-strip-sub");
+    const stripCountText = strip.querySelector(".div-strip-count-text");
+
+    if (stripName) {
+      if (stripName.dataset.en === undefined) stripName.dataset.en = stripName.textContent;
+      stripName.textContent = isMr ? (mrDiv?.name || stripName.dataset.en) : stripName.dataset.en;
+    }
+    if (stripSub) {
+      if (stripSub.dataset.en === undefined) stripSub.dataset.en = stripSub.textContent;
+      stripSub.textContent = isMr ? "सेंट्रल मिनी बँक" : stripSub.dataset.en;
+    }
+    if (stripCountText) {
+      stripCountText.textContent = isMr ? "सेवा" : "services";
+    }
+  });
+
+  // 9. Mobile Navigation Division Links
+  document.querySelectorAll("[data-mobile-div]").forEach((link) => {
+    const divId = link.dataset.mobileDiv;
+    const mrDiv = i18n.mrDivisions && i18n.mrDivisions[divId];
+    const nameEl = link.querySelector(".mobile-div-name");
+    if (nameEl) {
+      if (nameEl.dataset.en === undefined) nameEl.dataset.en = nameEl.textContent;
+      nameEl.textContent = isMr ? (mrDiv?.shortName || nameEl.dataset.en) : nameEl.dataset.en;
+    }
+  });
+
+  // 10. Filter Pills
+  document.querySelectorAll("[data-filter]").forEach((pill) => {
+    const filterKey = pill.dataset.filter;
+    const span = pill.querySelector("span") || pill;
+    if (span.dataset.en === undefined) span.dataset.en = span.textContent.trim();
+    if (filterKey === "all") {
+      span.textContent = isMr ? "सर्व सेवा" : span.dataset.en;
+    } else {
+      const mrDiv = i18n.mrDivisions && i18n.mrDivisions[filterKey];
+      span.textContent = isMr ? (mrDiv?.shortName || span.dataset.en) : span.dataset.en;
+    }
+  });
+
+  // 11. Documents Desk Checklist
+  if (Array.isArray(i18n.mrDocumentsChecklist)) {
+    document.querySelectorAll("[data-doc-cat]").forEach((catEl) => {
+      const catIdx = parseInt(catEl.dataset.docCat, 10);
+      const heading = catEl.querySelector(".doc-cat-heading");
+      const tag = catEl.querySelector(".doc-cat-tag");
+      const mrCat = i18n.mrDocumentsChecklist[catIdx];
+      if (mrCat) {
+        if (heading) {
+          if (heading.dataset.en === undefined) heading.dataset.en = heading.textContent;
+          heading.textContent = isMr ? mrCat.category : heading.dataset.en;
+        }
+        if (tag) {
+          if (tag.dataset.en === undefined) tag.dataset.en = tag.textContent;
+          tag.textContent = isMr ? mrCat.tag : tag.dataset.en;
+        }
+      }
+    });
+
+    document.querySelectorAll("[data-doc-card]").forEach((card) => {
+      const parts = (card.dataset.docCard || "").split("-");
+      const cIdx = parseInt(parts[0], 10);
+      const sIdx = parseInt(parts[1], 10);
+      const mrItem = i18n.mrDocumentsChecklist[cIdx]?.services?.[sIdx];
+      if (!mrItem) return;
+
+      const titleEl = card.querySelector(".doc-card-title");
+      const portalEl = card.querySelector(".doc-card-portal");
+      const copiesEl = card.querySelector(".doc-card-copies");
+      const turnEl = card.querySelector(".doc-card-turnaround");
+      const btnEl = card.querySelector(".doc-card-btn-text");
+      const reqsEl = card.querySelector(".doc-card-reqs");
+
+      if (titleEl) {
+        if (titleEl.dataset.en === undefined) titleEl.dataset.en = titleEl.textContent;
+        titleEl.textContent = isMr ? mrItem.name : titleEl.dataset.en;
+      }
+      if (portalEl) {
+        if (portalEl.dataset.en === undefined) portalEl.dataset.en = portalEl.textContent;
+        portalEl.textContent = isMr ? mrItem.portal : portalEl.dataset.en;
+      }
+      if (copiesEl) {
+        if (copiesEl.dataset.en === undefined) copiesEl.dataset.en = copiesEl.textContent;
+        copiesEl.textContent = isMr ? mrItem.copies : copiesEl.dataset.en;
+      }
+      if (turnEl) {
+        if (turnEl.dataset.en === undefined) turnEl.dataset.en = turnEl.textContent;
+        turnEl.textContent = isMr ? mrItem.counterTurnaround : turnEl.dataset.en;
+      }
+      if (btnEl) {
+        if (btnEl.dataset.en === undefined) btnEl.dataset.en = btnEl.textContent;
+        btnEl.textContent = isMr ? `पोर्टल उघडा` : btnEl.dataset.en;
+      }
+      if (reqsEl) {
+        if (reqsEl.dataset.en === undefined) reqsEl.dataset.en = reqsEl.innerHTML;
+        if (isMr) {
+          reqsEl.innerHTML = (mrItem.requirements || [])
+            .map((r) => `<li class="flex items-start gap-2"><span class="text-emerald-600 font-bold flex-none">✓</span><span>${r}</span></li>`)
+            .join("");
+        } else {
+          reqsEl.innerHTML = reqsEl.dataset.en;
+        }
+      }
+    });
+  }
+
+  // 12. Process Steps
+  if (i18n.mrProcessSteps) {
+    document.querySelectorAll("[data-step-index]").forEach((el) => {
+      const idx = parseInt(el.dataset.stepIndex, 10);
+      const step = i18n.mrProcessSteps[idx];
+      if (!step) return;
+      const t = el.querySelector(".step-title");
+      const b = el.querySelector(".step-body");
+      if (t) {
+        if (t.dataset.en === undefined) t.dataset.en = t.textContent;
+        t.textContent = isMr ? step.title : t.dataset.en;
+      }
+      if (b) {
+        if (b.dataset.en === undefined) b.dataset.en = b.textContent;
+        b.textContent = isMr ? step.body : b.dataset.en;
+      }
+    });
+  }
+
+  // 13. Process Notes
+  if (i18n.mrProcessNotes) {
+    document.querySelectorAll("[data-note-index]").forEach((el) => {
+      const idx = parseInt(el.dataset.noteIndex, 10);
+      const note = i18n.mrProcessNotes[idx];
+      if (!note) return;
+      const t = el.querySelector(".note-title");
+      const b = el.querySelector(".note-body");
+      if (t) {
+        if (t.dataset.en === undefined) t.dataset.en = t.textContent;
+        t.textContent = isMr ? note.title : t.dataset.en;
+      }
+      if (b) {
+        if (b.dataset.en === undefined) b.dataset.en = b.textContent;
+        b.textContent = isMr ? note.body : b.dataset.en;
+      }
+    });
+  }
+
+  // 14. FAQs
+  if (i18n.mrFaq) {
+    document.querySelectorAll("[data-faq]").forEach((el) => {
+      const idx = parseInt(el.dataset.faq, 10);
+      const item = i18n.mrFaq[idx];
+      if (!item) return;
+      const q = el.querySelector(".faq-q");
+      const a = el.querySelector(".faq-a");
+      if (q) {
+        if (q.dataset.en === undefined) q.dataset.en = q.textContent;
+        q.textContent = isMr ? item.q : q.dataset.en;
+      }
+      if (a) {
+        if (a.dataset.en === undefined) a.dataset.en = a.textContent;
+        a.textContent = isMr ? item.a : a.dataset.en;
+      }
+    });
+  }
+
+  // 15. Footer Popular Links & Divisions
+  document.querySelectorAll("[data-footer-div]").forEach((el) => {
+    const divId = el.dataset.footerDiv;
+    const mrDiv = i18n.mrDivisions && i18n.mrDivisions[divId];
+    const nameEl = el.querySelector(".footer-div-name");
+    if (nameEl) {
+      if (nameEl.dataset.en === undefined) nameEl.dataset.en = nameEl.textContent;
+      nameEl.textContent = isMr ? (mrDiv?.name || nameEl.dataset.en) : nameEl.dataset.en;
+    }
+  });
+
+  document.querySelectorAll("[data-footer-pop]").forEach((el) => {
+    const svcId = el.dataset.footerPop;
+    const mrSvc = i18n.mrServices && i18n.mrServices[svcId];
+    const nameEl = el.querySelector(".footer-pop-name");
+    if (nameEl) {
+      if (nameEl.dataset.en === undefined) nameEl.dataset.en = nameEl.textContent;
+      nameEl.textContent = isMr ? (mrSvc?.name || nameEl.dataset.en) : nameEl.dataset.en;
+    }
+  });
+
+  // 16. Service Dropdown in Contact Form
+  const formServiceSelect = document.querySelector('select[name="service"]');
+  if (formServiceSelect) {
+    formServiceSelect.querySelectorAll("option").forEach((opt) => {
+      const svcId = opt.value;
+      if (svcId) {
+        if (opt.dataset.en === undefined) opt.dataset.en = opt.textContent;
+        const mrSvc = i18n.mrServices && i18n.mrServices[svcId];
+        opt.textContent = isMr ? (mrSvc?.name || opt.dataset.en) : opt.dataset.en;
+      }
+    });
+    formServiceSelect.querySelectorAll("optgroup").forEach((group) => {
+      const divId = group.dataset.divId;
+      if (group.dataset.en === undefined) group.dataset.en = group.label;
+      const mrDiv = i18n.mrDivisions && i18n.mrDivisions[divId];
+      group.label = isMr ? (mrDiv?.name || group.dataset.en) : group.dataset.en;
+    });
+  }
+
+  // 17. Update resultCount in catalogue
+  applyDivisionFilter();
+
+  // 18. Save language preference in localStorage
+  try {
+    localStorage.setItem("amayra_lang", currentLang);
+  } catch (e) {
+    // ignore
+  }
+
+  // 19. Re-run live search dropdown if input is active
+  if (catalogueSearch && catalogueSearch.value.trim()) {
+    renderLiveSearchResults(catalogueSearch.value);
+  }
+}
+
+function initLanguage() {
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const lang = btn.dataset.lang;
+      if (lang) setLanguage(lang);
+    });
+  });
+
+  document.querySelectorAll(".lang-btn-mobile").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const lang = btn.dataset.lang;
+      if (lang) setLanguage(lang);
+    });
+  });
+
+  let savedLang = "en";
+  try {
+    savedLang = localStorage.getItem("amayra_lang") || "en";
+  } catch (e) {
+    savedLang = "en";
+  }
+
+  if (savedLang === "mr") {
+    setLanguage("mr");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", initLanguage);
+initLanguage();
+
