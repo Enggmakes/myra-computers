@@ -1,0 +1,20 @@
+{
+  "name": "myra-computer-enterprises",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./assets/css/site.css && node ./scripts/build.mjs",
+    "css": "tailwindcss -i ./src/input.css -o ./assets/css/site.css",
+    "css:watch": "tailwindcss -i ./src/input.css -o ./assets/css/site.css --watch",
+    "serve": "node ./server.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "puppeteer-core": "^24.43.1",
+    "tailwindcss": "^4.1.13"
+  },
+  "dependencies": {
+    "lucide-static": "^0.544.0"
+  }
+}

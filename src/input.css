@@ -1,0 +1,892 @@
+@import "tailwindcss";
+@import "../assets/css/fonts.css";
+
+@source "./template.html";
+@source "../index.html";
+
+/* ==========================================================================
+   Myra Computer Enterprises — Design System
+   Tailwind v4 theme layer + a thin component layer.
+   ========================================================================== */
+
+@theme {
+  /* -- Ink: the deep navy that carries the brand ------------------------ */
+  --color-ink-950: #050b14;
+  --color-ink-900: #0a1626;
+  --color-ink-800: #112339;
+  --color-ink-700: #1a3350;
+  --color-ink-600: #26456a;
+  --color-ink-500: #385b85;
+  --color-ink-400: #5b7da3;
+
+  /* -- Slate: the neutral grey register --------------------------------- */
+  --color-slate-50: #f7f9fb;
+  --color-slate-100: #eef2f6;
+  --color-slate-200: #dde3ea;
+  --color-slate-300: #c4cdd8;
+  --color-slate-400: #9aa6b4;
+  --color-slate-500: #627286;
+  --color-slate-600: #4c5a6c;
+  --color-slate-700: #384453;
+  --color-slate-800: #232c38;
+  --color-slate-900: #141a23;
+
+  /* -- Signal: the one accent, amber, used as a mark of attention -------- */
+  --color-signal-200: #fbe6c2;
+  --color-signal-300: #f7c77e;
+  --color-signal-400: #efa83f;
+  --color-signal-500: #d98014;
+  --color-signal-600: #b4660e;
+  --color-signal-700: #8a4b08;
+
+  /* -- Sovereign Civic Palette ------------------------------------------- */
+  --color-civic-forest: #071C19;
+  --color-civic-ivory: #F5F0E3;
+  --color-civic-gold: #D6B36A;
+  --color-civic-teal: #8FB7AE;
+  --color-civic-nav: #17212B;
+
+  /* -- Support ----------------------------------------------------------- */
+  --color-positive-600: #157f5c;
+  --color-positive-50: #e9f6f1;
+  --color-critical-600: #b42318;
+  --color-critical-50: #fdeceb;
+
+  /* -- Type -------------------------------------------------------------- */
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* -- Motion ------------------------------------------------------------ */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* -- Breakpoints (defaults kept, one added) ---------------------------- */
+  --breakpoint-3xl: 120rem;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-slate-700);
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern", "liga", "cv11";
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    overflow-x: clip;
+    max-width: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Completely remove and make scrollbar transparent across Chrome, Edge, Safari, Opera */
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    height: 0px;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    height: 0px;
+    background: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink-900);
+    text-wrap: balance;
+    letter-spacing: -0.022em;
+    line-height: 1.14;
+  }
+
+  h1 {
+    font-size: clamp(2.35rem, 1.35rem + 3.9vw, 4.05rem);
+    font-weight: 700;
+    letter-spacing: -0.034em;
+    line-height: 1.04;
+  }
+
+  h2 {
+    font-size: clamp(1.7rem, 1.15rem + 2.1vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.028em;
+    line-height: 1.1;
+  }
+
+  h3 {
+    font-size: clamp(1.15rem, 1.02rem + 0.5vw, 1.375rem);
+    font-weight: 650;
+    letter-spacing: -0.016em;
+    line-height: 1.24;
+  }
+
+  h4 {
+    font-size: 1.0625rem;
+    font-weight: 650;
+    letter-spacing: -0.012em;
+    line-height: 1.32;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Long-form copy keeps a readable measure. */
+  .measure {
+    max-width: 68ch;
+  }
+
+  /* -- Browser surfaces, themed from the palette ------------------------ */
+  ::selection {
+    background-color: var(--color-ink-800);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-slate-100);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-slate-300);
+    border: 3px solid var(--color-slate-100);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-slate-400);
+  }
+
+  ::placeholder {
+    color: var(--color-slate-500);
+    opacity: 1;
+  }
+
+  /* The component layer sets display on cards; the hidden attribute must
+     still win, or filtered-out tiles would keep rendering. */
+  [hidden] {
+    display: none !important;
+  }
+
+  /* The native search cancel button is replaced by a themed one. */
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* Tabular numerals wherever figures are compared. */
+  .nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Underline offset belongs to the palette, not to the browser default. */
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: from-font;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+@layer components {
+  /* -- Icons: one stroke weight, one geometry, sized from the type ------ */
+  .icon {
+    width: 1em;
+    height: 1em;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .icon-lg {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  /* -- Section rhythm --------------------------------------------------- */
+  .section {
+    padding-block: clamp(3.75rem, 2.2rem + 6vw, 7rem);
+  }
+
+  /* More space above a heading than below it. */
+  .section-head {
+    margin-bottom: clamp(2rem, 1.2rem + 2.6vw, 3.5rem);
+  }
+
+  /* -- Shell ------------------------------------------------------------ */
+  .shell {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 0.4rem + 2.2vw, 3rem);
+    max-width: 84rem;
+    box-sizing: border-box;
+  }
+
+  .shell-narrow {
+    max-width: 62rem;
+  }
+
+  /* -- Buttons ---------------------------------------------------------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    padding: 0.9375rem 1.375rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      background-color 180ms var(--ease-out-expo),
+      border-color 180ms var(--ease-out-expo),
+      color 180ms var(--ease-out-expo),
+      transform 180ms var(--ease-out-expo);
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .btn-primary {
+    background-color: var(--color-ink-900);
+    color: #ffffff;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-ink-700);
+  }
+
+  .btn-signal {
+    background-color: var(--color-signal-500);
+    color: var(--color-ink-950);
+  }
+  .btn-signal:hover {
+    background-color: var(--color-signal-400);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--color-ink-900);
+    border-color: var(--color-slate-300);
+  }
+  .btn-outline:hover {
+    border-color: var(--color-ink-700);
+    background-color: var(--color-slate-50);
+  }
+
+  .btn-outline-invert {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: rgb(255 255 255 / 0.28);
+  }
+  .btn-outline-invert:hover {
+    border-color: rgb(255 255 255 / 0.65);
+    background-color: rgb(255 255 255 / 0.06);
+  }
+
+  .btn-sm {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* -- Text link with a rule that draws on hover ------------------------ */
+  .link-rule {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-ink-800);
+    text-decoration: none;
+    padding-bottom: 2px;
+    background-image: linear-gradient(var(--color-signal-500), var(--color-signal-500));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1.5px;
+    transition:
+      background-size 220ms var(--ease-out-expo),
+      color 180ms var(--ease-out-expo);
+  }
+
+  .link-rule:hover,
+  .link-rule:focus-visible {
+    background-size: 100% 1.5px;
+    color: var(--color-ink-950);
+  }
+
+  .link-rule .icon {
+    transition: transform 220ms var(--ease-out-expo);
+  }
+
+  .link-rule:hover .icon {
+    transform: translateX(3px);
+  }
+
+  /* -- Eyebrow is banned as a heading label; this is a data label ------- */
+  .label {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-slate-500);
+  }
+
+  /* -- Rule: the hairline the whole layout hangs on --------------------- */
+  .hairline {
+    border-top: 1px solid var(--color-slate-200);
+  }
+
+  /* -- Catalogue tile --------------------------------------------------- */
+  .svc {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem 1.375rem 1.375rem;
+    background-color: #ffffff;
+    border: 1px solid var(--color-slate-200);
+    border-radius: 6px;
+    height: 100%;
+    transition:
+      border-color 200ms var(--ease-out-expo),
+      box-shadow 200ms var(--ease-out-expo),
+      transform 200ms var(--ease-out-expo);
+  }
+
+  .svc::before {
+    content: "";
+    position: absolute;
+    inset: -1px -1px auto -1px;
+    height: 2px;
+    border-radius: 6px 6px 0 0;
+    background-color: var(--color-signal-500);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms var(--ease-out-expo);
+  }
+
+  .svc:hover,
+  .svc:focus-within {
+    border-color: var(--color-slate-300);
+    box-shadow:
+      0 1px 2px rgb(10 22 38 / 0.04),
+      0 12px 28px -14px rgb(10 22 38 / 0.22);
+    transform: translateY(-2px);
+  }
+
+  .svc:hover::before,
+  .svc:focus-within::before {
+    transform: scaleX(1);
+  }
+
+  .svc-icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 8px;
+    background-color: var(--color-ink-900);
+    color: #ffffff;
+    font-size: 1.25rem;
+    transition:
+      background-color 200ms var(--ease-out-expo),
+      color 200ms var(--ease-out-expo),
+      transform 200ms var(--ease-out-expo);
+  }
+
+  .svc:hover .svc-icon {
+    transform: scale(1.05);
+  }
+
+  /* Division colored card borders and icon badges */
+  .svc[data-division="government"] { border-top: 3px solid #ea580c; }
+  .svc[data-division="education"] { border-top: 3px solid #059669; }
+  .svc[data-division="insurance"] { border-top: 3px solid #e11d48; }
+  .svc[data-division="credit"] { border-top: 3px solid #d97706; }
+  .svc[data-division="print"] { border-top: 3px solid #c2410c; }
+  .svc[data-division="payments"] { border-top: 3px solid #15803d; }
+  .svc[data-division="employment"] { border-top: 3px solid #7c3aed; }
+  .svc[data-division="commerce"] { border-top: 3px solid #2563eb; }
+  .svc[data-division="travel"] { border-top: 3px solid #0284c7; }
+  .svc[data-division="technology"] { border-top: 3px solid #0891b2; }
+  .svc[data-division="personal"] { border-top: 3px solid #db2777; }
+
+  .svc[data-division="government"] .svc-icon { background-color: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+  .svc[data-division="education"] .svc-icon { background-color: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+  .svc[data-division="insurance"] .svc-icon { background-color: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
+  .svc[data-division="credit"] .svc-icon { background-color: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+  .svc[data-division="print"] .svc-icon { background-color: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; }
+  .svc[data-division="payments"] .svc-icon { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+  .svc[data-division="employment"] .svc-icon { background-color: #faf5ff; color: #7c3aed; border: 1px solid #e9d5ff; }
+  .svc[data-division="commerce"] .svc-icon { background-color: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+  .svc[data-division="travel"] .svc-icon { background-color: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; }
+  .svc[data-division="technology"] .svc-icon { background-color: #0a1626; color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+  .svc[data-division="personal"] .svc-icon { background-color: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8; }
+
+
+  /* -- Filter pill ------------------------------------------------------ */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.95rem;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--color-slate-700);
+    background-color: #ffffff;
+    border: 1px solid var(--color-slate-200);
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background-color 160ms var(--ease-out-expo),
+      border-color 160ms var(--ease-out-expo),
+      color 160ms var(--ease-out-expo),
+      transform 160ms var(--ease-out-expo),
+      box-shadow 160ms var(--ease-out-expo);
+  }
+
+  .pill:hover {
+    border-color: #ea580c;
+    color: #c2410c;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .pill[aria-pressed="true"] {
+    background: linear-gradient(135deg, #0a1626 0%, #1e3a8a 100%);
+    border-color: #0a1626;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(10, 22, 38, 0.25);
+  }
+
+  /* Division specific active filter pills */
+  .pill[data-filter="government"][aria-pressed="true"] { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); border-color: #ea580c; }
+  .pill[data-filter="education"][aria-pressed="true"] { background: linear-gradient(135deg, #059669 0%, #047857 100%); border-color: #059669; }
+  .pill[data-filter="insurance"][aria-pressed="true"] { background: linear-gradient(135deg, #e11d48 0%, #be123c 100%); border-color: #e11d48; }
+  .pill[data-filter="credit"][aria-pressed="true"] { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border-color: #d97706; }
+  .pill[data-filter="print"][aria-pressed="true"] { background: linear-gradient(135deg, #c2410c 0%, #9a3412 100%); border-color: #c2410c; }
+  .pill[data-filter="payments"][aria-pressed="true"] { background: linear-gradient(135deg, #15803d 0%, #166534 100%); border-color: #15803d; }
+  .pill[data-filter="employment"][aria-pressed="true"] { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); border-color: #7c3aed; }
+  .pill[data-filter="commerce"][aria-pressed="true"] { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); border-color: #2563eb; }
+  .pill[data-filter="travel"][aria-pressed="true"] { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border-color: #0284c7; }
+  .pill[data-filter="technology"][aria-pressed="true"] { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); border-color: #0891b2; }
+  .pill[data-filter="personal"][aria-pressed="true"] { background: linear-gradient(135deg, #db2777 0%, #be185d 100%); border-color: #db2777; }
+
+  /* -- Indian Tricolor Header Ribbon ------------------------------------ */
+  .tricolor-ribbon {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, #ea580c 0%, #ea580c 34%, #ffffff 34%, #ffffff 66%, #15803d 66%, #15803d 100%);
+  }
+
+  /* -- Direct Portal Action Buttons ------------------------------------- */
+  .portal-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.65rem 0.95rem;
+    border-radius: 6px;
+    font-family: var(--font-display);
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .portal-action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.16);
+  }
+  .portal-action-btn:active {
+    transform: translateY(0);
+  }
+
+  .portal-btn-government {
+    background: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(234, 88, 12, 0.22);
+  }
+  .portal-btn-government:hover {
+    background: linear-gradient(135deg, #c2410c 0%, #b45309 100%);
+  }
+
+  .portal-btn-education {
+    background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.22);
+  }
+  .portal-btn-education:hover {
+    background: linear-gradient(135deg, #047857 0%, #0f766e 100%);
+  }
+
+  .portal-btn-insurance {
+    background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(225, 29, 72, 0.22);
+  }
+  .portal-btn-insurance:hover {
+    background: linear-gradient(135deg, #be123c 0%, #9f1239 100%);
+  }
+
+  .portal-btn-credit {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(217, 119, 6, 0.22);
+  }
+  .portal-btn-credit:hover {
+    background: linear-gradient(135deg, #b45309 0%, #92400e 100%);
+  }
+
+  .portal-btn-print {
+    background: linear-gradient(135deg, #475569 0%, #c2410c 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(71, 85, 105, 0.22);
+  }
+  .portal-btn-print:hover {
+    background: linear-gradient(135deg, #334155 0%, #9a3412 100%);
+  }
+
+  .portal-btn-payments {
+    background: linear-gradient(135deg, #15803d 0%, #047857 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(21, 128, 61, 0.22);
+  }
+  .portal-btn-payments:hover {
+    background: linear-gradient(135deg, #166534 0%, #065f46 100%);
+  }
+
+  .portal-btn-employment {
+    background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(124, 58, 237, 0.22);
+  }
+  .portal-btn-employment:hover {
+    background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%);
+  }
+
+  .portal-btn-commerce {
+    background: linear-gradient(135deg, #2563eb 0%, #0284c7 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.22);
+  }
+  .portal-btn-commerce:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #0369a1 100%);
+  }
+
+  .portal-btn-travel {
+    background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.22);
+  }
+  .portal-btn-travel:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #0f766e 100%);
+  }
+
+  .portal-btn-technology {
+    background: linear-gradient(135deg, #0a1626 0%, #1e3a8a 100%);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 2px 6px rgba(10, 22, 38, 0.22);
+  }
+  .portal-btn-technology:hover {
+    background: linear-gradient(135deg, #112339 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border-color: rgba(56, 189, 248, 0.7);
+  }
+
+  .portal-btn-personal {
+    background: linear-gradient(135deg, #db2777 0%, #e11d48 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(219, 39, 119, 0.22);
+  }
+  .portal-btn-personal:hover {
+    background: linear-gradient(135deg, #be185d 0%, #be123c 100%);
+  }
+
+  /* Division Badges */
+  .badge-gov { background-color: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+  .badge-edu { background-color: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+  .badge-ins { background-color: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
+  .badge-credit { background-color: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+  .badge-print { background-color: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; }
+  .badge-pay { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+  .badge-emp { background-color: #faf5ff; color: #6d28d9; border: 1px solid #e9d5ff; }
+  .badge-com { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .badge-travel { background-color: #f0f9ff; color: #0369a1; border: 1px solid #bae6fd; }
+  .badge-tech { background-color: #ecfeff; color: #0e7490; border: 1px solid #a5f3fc; }
+  .badge-personal { background-color: #fdf2f8; color: #be185d; border: 1px solid #fbcfe8; }
+
+
+  /* -- Form field ------------------------------------------------------- */
+  .field {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-ink-900);
+    background-color: #ffffff;
+    border: 1px solid var(--color-slate-300);
+    border-radius: 4px;
+    padding: 0.75rem 0.875rem;
+    transition:
+      border-color 160ms var(--ease-out-expo),
+      box-shadow 160ms var(--ease-out-expo);
+  }
+
+  .field:hover {
+    border-color: var(--color-slate-400);
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: var(--color-ink-700);
+    box-shadow: 0 0 0 3px rgb(56 91 133 / 0.16);
+  }
+
+  .field[aria-invalid="true"] {
+    border-color: var(--color-critical-600);
+  }
+
+  .field[aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 3px rgb(180 35 24 / 0.14);
+  }
+
+  select.field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23384453' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.05rem;
+    padding-right: 2.5rem;
+  }
+
+  /* -- Divider with a centred label ------------------------------------- */
+  .rule-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-slate-400);
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+  .rule-label::before,
+  .rule-label::after {
+    content: "";
+    height: 1px;
+    background-color: var(--color-slate-200);
+    flex: 1;
+  }
+
+  /* -- Focus ring for the skip link ------------------------------------- */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 100;
+    background-color: var(--color-ink-900);
+    color: #ffffff;
+    padding: 0.75rem 1.125rem;
+    border-radius: 4px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: top 160ms var(--ease-out-expo);
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Motion — one authored moment, orchestrated once
+   ========================================================================== */
+
+@layer utilities {
+  /* The catalogue reveal. Elements start visible; only the transform and
+     opacity are animated, and only once, when the row enters view. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 620ms var(--ease-out-expo),
+      transform 620ms var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* The header condenses once the page scrolls. */
+  .header-shell {
+    transition:
+      background-color 220ms var(--ease-out-expo),
+      box-shadow 220ms var(--ease-out-expo);
+  }
+}
+
+/* Dynamic Live Search Dropdown & Suggestions */
+.search-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.search-chip:hover {
+  background-color: #ffedd5;
+  color: #c2410c;
+  border-color: #fdba74;
+}
+
+.search-highlight-pulse {
+  animation: cardPulse 2.5s ease-out;
+}
+
+@keyframes cardPulse {
+  0% {
+    box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.8), 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+  60% {
+    box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.4), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+/* Mobile Nav Drawer Smooth Animation */
+#mobile-nav:not(.hidden) [role="document"] {
+  animation: drawerSlideIn 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Ensure no elements cause horizontal viewport blowout on small mobile screens */
+main,
+section,
+article,
+header,
+footer {
+  max-width: 100%;
+}
+
+/* Responsive Hero Background: Smooth interchange between vertical mobile image and horizontal desktop banner */
+.hero-bg-responsive {
+  background-color: #071C19;
+  background-image: url('../../hero_vertical.png');
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) and (min-aspect-ratio: 1/1), (min-width: 1024px) {
+  .hero-bg-responsive {
+    background-image: url('../../hero.png');
+    background-position: center center;
+  }
+}
+
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    color: #000;
+  }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #555;
+  }
+}

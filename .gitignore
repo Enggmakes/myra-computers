@@ -1,0 +1,7 @@
+node_modules/
+.vercel
+.claude/
+.impeccable/
+.DS_Store
+Thumbs.db
+*.log
