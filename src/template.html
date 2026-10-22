@@ -227,26 +227,15 @@
             </svg>
           </a>
 
-          <!-- Language Switcher (Desktop & Tablet) at the right-most corner -->
-          <div class="lang-switcher flex items-center bg-slate-100 border border-slate-300 rounded-lg p-0.5 shadow-xs flex-none" role="group" aria-label="Language selection">
-            <button
-              type="button"
-              data-lang="en"
-              class="lang-btn active flex items-center gap-1 px-2.5 py-1.5 rounded-md font-display text-[0.8125rem] font-bold transition-all text-[#17212B] bg-white shadow-xs"
-              title="Switch to English"
-              aria-pressed="true"
-            >
-              <span>EN</span>
-            </button>
-            <button
-              type="button"
-              data-lang="mr"
-              class="lang-btn flex items-center gap-1 px-2.5 py-1.5 rounded-md font-display text-[0.8125rem] font-bold transition-all text-slate-500 hover:text-[#17212B]"
-              title="मराठीमध्ये पहा"
-              aria-pressed="false"
-            >
-              <span>मराठी</span>
-            </button>
+          <!-- Language Switcher: Checkbox-wrapper-25 (Desktop & Tablet) at the right-most corner -->
+          <div class="checkbox-wrapper-25 flex items-center flex-none" title="Switch language: English / मराठी">
+            <input
+              type="checkbox"
+              id="lang-toggle-checkbox"
+              role="switch"
+              aria-checked="false"
+              aria-label="Toggle language between English and Marathi"
+            />
           </div>
 
           <button
@@ -348,27 +337,20 @@
 
         <!-- Scrollable Navigation Body -->
         <nav class="flex-1 overflow-y-auto px-5 py-5 space-y-6" aria-label="Mobile Navigation">
-          <!-- Mobile Language Switcher -->
-          <div class="flex items-center justify-between p-3 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/30 shadow-xs">
+          <!-- Mobile Language Switcher with Checkbox-wrapper-25 -->
+          <div class="flex items-center justify-between p-3.5 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/30 shadow-xs">
             <span class="text-[0.8125rem] font-bold text-[#F5F0E3] flex items-center gap-2">
               <span class="text-[#D6B36A]">🌐</span>
               <span data-i18n="lang_choice_label">Language / भाषा</span>
             </span>
-            <div class="flex items-center bg-[#071C19] border border-[#8FB7AE]/30 rounded-md p-0.5" role="group" aria-label="Language selection">
-              <button
-                type="button"
-                data-lang="en"
-                class="lang-btn-mobile active px-3 py-1 text-xs font-bold rounded transition-all text-[#071C19] bg-[#D6B36A]"
-              >
-                English
-              </button>
-              <button
-                type="button"
-                data-lang="mr"
-                class="lang-btn-mobile px-3 py-1 text-xs font-bold rounded transition-all text-[#8FB7AE] hover:text-[#F5F0E3]"
-              >
-                मराठी
-              </button>
+            <div class="checkbox-wrapper-25 flex items-center">
+              <input
+                type="checkbox"
+                id="lang-toggle-mobile"
+                role="switch"
+                aria-checked="false"
+                aria-label="Toggle language between English and Marathi (Mobile)"
+              />
             </div>
           </div>
 

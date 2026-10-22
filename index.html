@@ -2029,9 +2029,6 @@
     .sm\:mt-14 {
       margin-top: calc(var(--spacing) * 14);
     }
-    .sm\:mr-6 {
-      margin-right: calc(var(--spacing) * 6);
-    }
     .sm\:mb-4 {
       margin-bottom: calc(var(--spacing) * 4);
     }
@@ -2173,9 +2170,6 @@
     .lg\:col-span-8 {
       grid-column: span 8 / span 8;
     }
-    .lg\:mr-8 {
-      margin-right: calc(var(--spacing) * 8);
-    }
     .lg\:block {
       display: block;
     }
@@ -2197,9 +2191,6 @@
     .lg\:items-end {
       align-items: flex-end;
     }
-    .lg\:gap-8 {
-      gap: calc(var(--spacing) * 8);
-    }
     .lg\:gap-10 {
       gap: calc(var(--spacing) * 10);
     }
@@ -2219,12 +2210,6 @@
   @media (width >= 80rem) {
     .xl\:col-span-6 {
       grid-column: span 6 / span 6;
-    }
-    .xl\:mr-10 {
-      margin-right: calc(var(--spacing) * 10);
-    }
-    .xl\:block {
-      display: block;
     }
     .xl\:flex {
       display: flex;
@@ -3156,6 +3141,66 @@ body.lang-mr h1, body.lang-mr h2, body.lang-mr h3, body.lang-mr h4, body.lang-mr
     gap: 2.25rem;
   }
 }
+.checkbox-wrapper-25 {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  user-select: none;
+  flex-shrink: 0;
+}
+.checkbox-wrapper-25 input[type="checkbox"] {
+  background-image: -webkit-linear-gradient(hsla(0,0%,0%,.1), hsla(0,0%,100%,.1)), -webkit-linear-gradient(left, #f66 50%, #6cf 50%);
+  background-image: linear-gradient(hsla(0,0%,0%,.1), hsla(0,0%,100%,.1)), linear-gradient(to right, #f66 50%, #6cf 50%);
+  background-size: 100% 100%, 200% 100%;
+  background-position: 0 0, 15px 0;
+  border-radius: 25px;
+  box-shadow: inset 0 1px 4px hsla(0,0%,0%,.5), inset 0 0 10px hsla(0,0%,0%,.5), 0 0 0 1px hsla(0,0%,0%,.1), 0 -1px 2px 2px hsla(0,0%,0%,.25), 0 2px 2px 2px hsla(0,0%,100%,.75);
+  cursor: pointer;
+  height: 25px;
+  padding-right: 25px;
+  width: 75px;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-transition: .25s ease;
+  transition: .25s ease;
+  outline: none;
+  border: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+.checkbox-wrapper-25 input[type="checkbox"]:after {
+  background-color: #eee;
+  background-image: -webkit-linear-gradient(hsla(0,0%,100%,.1), hsla(0,0%,0%,.1));
+  background-image: linear-gradient(hsla(0,0%,100%,.1), hsla(0,0%,0%,.1));
+  border-radius: 25px;
+  box-shadow: inset 0 1px 1px 1px hsla(0,0%,100%,1), inset 0 -1px 1px 1px hsla(0,0%,0%,.25), 0 1px 3px 1px hsla(0,0%,0%,.5), 0 0 2px hsla(0,0%,0%,.25);
+  content: 'EN';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  color: #17212b;
+  height: 25px;
+  width: 50px;
+  box-sizing: border-box;
+  letter-spacing: 0.04em;
+  transition: all .25s ease;
+}
+.checkbox-wrapper-25 input[type="checkbox"]:checked {
+  background-position: 0 0, 35px 0;
+  padding-left: 25px;
+  padding-right: 0;
+}
+.checkbox-wrapper-25 input[type="checkbox"]:checked:after {
+  content: 'मराठी';
+  font-family: 'Noto Sans Devanagari', var(--font-sans, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  color: #071c19;
+  letter-spacing: 0;
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
@@ -3708,26 +3753,15 @@ body.lang-mr h1, body.lang-mr h2, body.lang-mr h3, body.lang-mr h4, body.lang-mr
             </svg>
           </a>
 
-          <!-- Language Switcher (Desktop & Tablet) at the right-most corner -->
-          <div class="lang-switcher flex items-center bg-slate-100 border border-slate-300 rounded-lg p-0.5 shadow-xs flex-none" role="group" aria-label="Language selection">
-            <button
-              type="button"
-              data-lang="en"
-              class="lang-btn active flex items-center gap-1 px-2.5 py-1.5 rounded-md font-display text-[0.8125rem] font-bold transition-all text-[#17212B] bg-white shadow-xs"
-              title="Switch to English"
-              aria-pressed="true"
-            >
-              <span>EN</span>
-            </button>
-            <button
-              type="button"
-              data-lang="mr"
-              class="lang-btn flex items-center gap-1 px-2.5 py-1.5 rounded-md font-display text-[0.8125rem] font-bold transition-all text-slate-500 hover:text-[#17212B]"
-              title="मराठीमध्ये पहा"
-              aria-pressed="false"
-            >
-              <span>मराठी</span>
-            </button>
+          <!-- Language Switcher: Checkbox-wrapper-25 (Desktop & Tablet) at the right-most corner -->
+          <div class="checkbox-wrapper-25 flex items-center flex-none" title="Switch language: English / मराठी">
+            <input
+              type="checkbox"
+              id="lang-toggle-checkbox"
+              role="switch"
+              aria-checked="false"
+              aria-label="Toggle language between English and Marathi"
+            />
           </div>
 
           <button
@@ -3888,27 +3922,20 @@ body.lang-mr h1, body.lang-mr h2, body.lang-mr h3, body.lang-mr h4, body.lang-mr
 
         <!-- Scrollable Navigation Body -->
         <nav class="flex-1 overflow-y-auto px-5 py-5 space-y-6" aria-label="Mobile Navigation">
-          <!-- Mobile Language Switcher -->
-          <div class="flex items-center justify-between p-3 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/30 shadow-xs">
+          <!-- Mobile Language Switcher with Checkbox-wrapper-25 -->
+          <div class="flex items-center justify-between p-3.5 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/30 shadow-xs">
             <span class="text-[0.8125rem] font-bold text-[#F5F0E3] flex items-center gap-2">
               <span class="text-[#D6B36A]">🌐</span>
               <span data-i18n="lang_choice_label">Language / भाषा</span>
             </span>
-            <div class="flex items-center bg-[#071C19] border border-[#8FB7AE]/30 rounded-md p-0.5" role="group" aria-label="Language selection">
-              <button
-                type="button"
-                data-lang="en"
-                class="lang-btn-mobile active px-3 py-1 text-xs font-bold rounded transition-all text-[#071C19] bg-[#D6B36A]"
-              >
-                English
-              </button>
-              <button
-                type="button"
-                data-lang="mr"
-                class="lang-btn-mobile px-3 py-1 text-xs font-bold rounded transition-all text-[#8FB7AE] hover:text-[#F5F0E3]"
-              >
-                मराठी
-              </button>
+            <div class="checkbox-wrapper-25 flex items-center">
+              <input
+                type="checkbox"
+                id="lang-toggle-mobile"
+                role="switch"
+                aria-checked="false"
+                aria-label="Toggle language between English and Marathi (Mobile)"
+              />
             </div>
           </div>
 
@@ -11075,18 +11102,20 @@ function setLanguage(lang) {
   document.documentElement.lang = isMr ? "mr" : "en";
   document.body.classList.toggle("lang-mr", isMr);
 
-  // 2. Desktop & Mobile Switcher Buttons State
-  document.querySelectorAll(".lang-btn").forEach((btn) => {
-    const active = btn.dataset.lang === currentLang;
-    btn.classList.toggle("active", active);
-    btn.classList.toggle("bg-white", active);
-    btn.classList.toggle("text-slate-900", active);
-    btn.classList.toggle("shadow-sm", active);
-    btn.classList.toggle("text-slate-600", !active);
-    btn.setAttribute("aria-pressed", active ? "true" : "false");
-  });
+  // 2. Checkbox-wrapper-25 Switch State
+  const langToggleCheckbox = document.getElementById("lang-toggle-checkbox");
+  const langToggleMobile = document.getElementById("lang-toggle-mobile");
+  if (langToggleCheckbox) {
+    langToggleCheckbox.checked = isMr;
+    langToggleCheckbox.setAttribute("aria-checked", isMr ? "true" : "false");
+  }
+  if (langToggleMobile) {
+    langToggleMobile.checked = isMr;
+    langToggleMobile.setAttribute("aria-checked", isMr ? "true" : "false");
+  }
 
-  document.querySelectorAll(".lang-btn-mobile").forEach((btn) => {
+  // Legacy / fallback button states if present
+  document.querySelectorAll(".lang-btn, .lang-btn-mobile").forEach((btn) => {
     const active = btn.dataset.lang === currentLang;
     btn.classList.toggle("active", active);
     btn.classList.toggle("bg-white", active);
@@ -11437,14 +11466,21 @@ function setLanguage(lang) {
 }
 
 function initLanguage() {
-  document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const lang = btn.dataset.lang;
-      if (lang) setLanguage(lang);
-    });
-  });
+  const langToggleCheckbox = document.getElementById("lang-toggle-checkbox");
+  const langToggleMobile = document.getElementById("lang-toggle-mobile");
 
-  document.querySelectorAll(".lang-btn-mobile").forEach((btn) => {
+  const onToggleChange = (e) => {
+    setLanguage(e.target.checked ? "mr" : "en");
+  };
+
+  if (langToggleCheckbox) {
+    langToggleCheckbox.addEventListener("change", onToggleChange);
+  }
+  if (langToggleMobile) {
+    langToggleMobile.addEventListener("change", onToggleChange);
+  }
+
+  document.querySelectorAll(".lang-btn, .lang-btn-mobile").forEach((btn) => {
     btn.addEventListener("click", () => {
       const lang = btn.dataset.lang;
       if (lang) setLanguage(lang);
@@ -11460,6 +11496,8 @@ function initLanguage() {
 
   if (savedLang === "mr") {
     setLanguage("mr");
+  } else {
+    setLanguage("en");
   }
 }
 

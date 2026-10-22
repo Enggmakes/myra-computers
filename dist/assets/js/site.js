@@ -1003,18 +1003,20 @@ function setLanguage(lang) {
   document.documentElement.lang = isMr ? "mr" : "en";
   document.body.classList.toggle("lang-mr", isMr);
 
-  // 2. Desktop & Mobile Switcher Buttons State
-  document.querySelectorAll(".lang-btn").forEach((btn) => {
-    const active = btn.dataset.lang === currentLang;
-    btn.classList.toggle("active", active);
-    btn.classList.toggle("bg-white", active);
-    btn.classList.toggle("text-slate-900", active);
-    btn.classList.toggle("shadow-sm", active);
-    btn.classList.toggle("text-slate-600", !active);
-    btn.setAttribute("aria-pressed", active ? "true" : "false");
-  });
+  // 2. Checkbox-wrapper-25 Switch State
+  const langToggleCheckbox = document.getElementById("lang-toggle-checkbox");
+  const langToggleMobile = document.getElementById("lang-toggle-mobile");
+  if (langToggleCheckbox) {
+    langToggleCheckbox.checked = isMr;
+    langToggleCheckbox.setAttribute("aria-checked", isMr ? "true" : "false");
+  }
+  if (langToggleMobile) {
+    langToggleMobile.checked = isMr;
+    langToggleMobile.setAttribute("aria-checked", isMr ? "true" : "false");
+  }
 
-  document.querySelectorAll(".lang-btn-mobile").forEach((btn) => {
+  // Legacy / fallback button states if present
+  document.querySelectorAll(".lang-btn, .lang-btn-mobile").forEach((btn) => {
     const active = btn.dataset.lang === currentLang;
     btn.classList.toggle("active", active);
     btn.classList.toggle("bg-white", active);
@@ -1365,14 +1367,21 @@ function setLanguage(lang) {
 }
 
 function initLanguage() {
-  document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const lang = btn.dataset.lang;
-      if (lang) setLanguage(lang);
-    });
-  });
+  const langToggleCheckbox = document.getElementById("lang-toggle-checkbox");
+  const langToggleMobile = document.getElementById("lang-toggle-mobile");
 
-  document.querySelectorAll(".lang-btn-mobile").forEach((btn) => {
+  const onToggleChange = (e) => {
+    setLanguage(e.target.checked ? "mr" : "en");
+  };
+
+  if (langToggleCheckbox) {
+    langToggleCheckbox.addEventListener("change", onToggleChange);
+  }
+  if (langToggleMobile) {
+    langToggleMobile.addEventListener("change", onToggleChange);
+  }
+
+  document.querySelectorAll(".lang-btn, .lang-btn-mobile").forEach((btn) => {
     btn.addEventListener("click", () => {
       const lang = btn.dataset.lang;
       if (lang) setLanguage(lang);
@@ -1388,6 +1397,8 @@ function initLanguage() {
 
   if (savedLang === "mr") {
     setLanguage("mr");
+  } else {
+    setLanguage("en");
   }
 }
 
