@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/site.css && node ./scripts/build.mjs",
-    "css": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/site.css",
-    "css:watch": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/css/site.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./assets/css/site.css && node ./scripts/build.mjs",
+    "css": "tailwindcss -i ./src/input.css -o ./assets/css/site.css",
+    "css:watch": "tailwindcss -i ./src/input.css -o ./assets/css/site.css --watch",
     "serve": "node ./server.mjs"
   },
   "dependencies": {
