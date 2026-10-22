@@ -1,5 +1,5 @@
 /**
- * Canonical service catalogue for Myra Computer Enterprises.
+ * Canonical service catalogue for Amayra Computers.
  * Enriched with direct Indian Government and official portal endpoints,
  * action labels, authentic badge types, and document verification checklists.
  */
@@ -930,7 +930,7 @@ export const services = [
       "travel cover",
       "short term"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20a%20quote%20for%20POS%20Insurance",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20a%20quote%20for%20POS%20Insurance",
     "portalName": "Counter POS Insurance Desk",
     "actionLabel": "Get Instant Policy Quote",
     "badgeText": "IRDAI Registered",
@@ -1011,7 +1011,7 @@ export const services = [
       "retail credit",
       "repayment"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20details%20for%20Merchant%20POS%20Finance",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20details%20for%20Merchant%20POS%20Finance",
     "portalName": "Merchant POS Finance Desk",
     "actionLabel": "Inquire POS Machine",
     "badgeText": "Merchant POS",
@@ -1053,8 +1053,8 @@ export const services = [
       "application form",
       "counter"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20have%20a%20Print%20Job",
-    "portalName": "Shivajinagar Document Room",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20have%20a%20Print%20Job",
+    "portalName": "Sangamner Document Room",
     "actionLabel": "Send Print Job on WhatsApp",
     "badgeText": "High-Speed Print",
     "isGov": false
@@ -1095,7 +1095,7 @@ export const services = [
       "digitise",
       "copy"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Document%20Scanning%20and%20Digitisation",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Document%20Scanning%20and%20Digitisation",
     "portalName": "High-Res OCR Scanning Desk",
     "actionLabel": "Book Scanning & OCR",
     "badgeText": "PDF / OCR Archive",
@@ -1115,7 +1115,7 @@ export const services = [
       "hard binding",
       "soft cover"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Lamination%20and%20Binding",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Lamination%20and%20Binding",
     "portalName": "Lamination & Spiral Desk",
     "actionLabel": "Order Lamination / Binding",
     "badgeText": "Instant Counter",
@@ -1137,7 +1137,7 @@ export const services = [
       "cv",
       "application letter"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Typing%20or%20Affidavit%20Drafting",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Typing%20or%20Affidavit%20Drafting",
     "portalName": "Legal Typing & Affidavit Desk",
     "actionLabel": "Draft Legal Document",
     "badgeText": "English & Marathi",
@@ -1157,7 +1157,7 @@ export const services = [
       "institution",
       "school"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Online%20Form%20Printout",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Online%20Form%20Printout",
     "portalName": "Application Print Desk",
     "actionLabel": "Print Application Form",
     "badgeText": "Color / B&W",
@@ -1177,7 +1177,7 @@ export const services = [
       "membership card",
       "staff card"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20PVC%20Smart%20Card%20Printing",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20PVC%20Smart%20Card%20Printing",
     "portalName": "PVC Smart Card Unit",
     "actionLabel": "Order PVC Smart Card",
     "badgeText": "Durable PVC",
@@ -1198,7 +1198,7 @@ export const services = [
       "signage",
       "shop board"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Signage%20and%20Flex",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Signage%20and%20Flex",
     "portalName": "Signage & Display Print",
     "actionLabel": "Request Signage Quote",
     "badgeText": "Commercial Display",
@@ -1259,7 +1259,7 @@ export const services = [
       "overseas",
       "money transfer"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20International%20Remittance%20Assistance",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20International%20Remittance%20Assistance",
     "portalName": "Authorized Remittance Desk",
     "actionLabel": "Inquire Forex Transfer",
     "badgeText": "RBI Compliant",
@@ -1320,7 +1320,7 @@ export const services = [
       "reconciliation",
       "card machine"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Merchant%20Settlement%20Support",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Merchant%20Settlement%20Support",
     "portalName": "Merchant POS Settlement",
     "actionLabel": "POS Settlement Desk",
     "badgeText": "Next-Day Credit",
@@ -1383,7 +1383,7 @@ export const services = [
       "requirement",
       "recruiter"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20want%20to%20Post%20a%20Job%20Vacancy",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20want%20to%20Post%20a%20Job%20Vacancy",
     "portalName": "Employer Posting Desk",
     "actionLabel": "Post Job Vacancy",
     "badgeText": "Pune & PCMC",
@@ -1404,7 +1404,7 @@ export const services = [
       "helper",
       "manpower"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Staffing%20Solutions",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Staffing%20Solutions",
     "portalName": "Pune Staffing Bureau",
     "actionLabel": "Hire Verified Staff",
     "badgeText": "Contract & Perm",
@@ -1449,7 +1449,7 @@ export const services = [
       "flat",
       "shop"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20have%20a%20Property%20Rent%20or%20Sale%20Inquiry",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20have%20a%20Property%20Rent%20or%20Sale%20Inquiry",
     "portalName": "Pune Property Desk",
     "actionLabel": "List / Search Property",
     "badgeText": "Verified Listings",
@@ -1470,7 +1470,7 @@ export const services = [
       "hardware supply",
       "machinery"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Engineering%20Supplies",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Engineering%20Supplies",
     "portalName": "All-India Industrial Supply",
     "actionLabel": "Request Industrial Quote",
     "badgeText": "B2B Procurement",
@@ -1512,7 +1512,7 @@ export const services = [
       "procurement",
       "sourcing"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Vendor%20Sourcing",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Vendor%20Sourcing",
     "portalName": "Vendor Verification Desk",
     "actionLabel": "Connect with Vendors",
     "badgeText": "Pune Industrial",
@@ -1598,7 +1598,7 @@ export const services = [
       "accommodation",
       "booking"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Hotel%20Booking%20Assistance",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Hotel%20Booking%20Assistance",
     "portalName": "Hotel Desk Pune",
     "actionLabel": "Book Verified Stay",
     "badgeText": "Corporate & Leisure",
@@ -1638,7 +1638,7 @@ export const services = [
       "travel insurance",
       "exchange"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Forex%20Exchange",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Forex%20Exchange",
     "portalName": "Authorized Currency Bureau",
     "actionLabel": "Get Live Forex Rates",
     "badgeText": "RBI Authorized",
@@ -1681,7 +1681,7 @@ export const services = [
       "procurement",
       "supply"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Enterprise%20Hardware%20Quotation",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Enterprise%20Hardware%20Quotation",
     "portalName": "OEM Enterprise Hardware",
     "actionLabel": "Request Hardware Quote",
     "badgeText": "HP / Dell / Lenovo",
@@ -1704,7 +1704,7 @@ export const services = [
       "firewall",
       "network"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Network%20Infrastructure%20Setup",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Network%20Infrastructure%20Setup",
     "portalName": "Cisco & Ubiquiti Practice",
     "actionLabel": "Schedule Network Audit",
     "badgeText": "Structured Cabling",
@@ -1725,7 +1725,7 @@ export const services = [
       "preventive",
       "support contract"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20an%20AMC%20Maintenance%20Contract",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20an%20AMC%20Maintenance%20Contract",
     "portalName": "Comprehensive AMC Desk",
     "actionLabel": "Inquire AMC Contract",
     "badgeText": "SLA Guaranteed",
@@ -1746,7 +1746,7 @@ export const services = [
       "ticket",
       "troubleshooting"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20IT%20Support",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20IT%20Support",
     "portalName": "Pune On-Site & Remote Desk",
     "actionLabel": "Book IT Support Visit",
     "badgeText": "Immediate Dispatch",
@@ -1767,7 +1767,7 @@ export const services = [
       "office",
       "antivirus"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Software%20Licensing",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Software%20Licensing",
     "portalName": "Authorized License Reseller",
     "actionLabel": "Order Genuine Licenses",
     "badgeText": "Microsoft / Tally",
@@ -1789,7 +1789,7 @@ export const services = [
       "hosting",
       "frontend"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Web%20Development",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Web%20Development",
     "portalName": "Custom Engineering Practice",
     "actionLabel": "Scope Web Project",
     "badgeText": "Full-Stack Web",
@@ -1810,7 +1810,7 @@ export const services = [
       "data",
       "continuity"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Data%20Backup%20Solutions",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Data%20Backup%20Solutions",
     "portalName": "Hybrid Cloud Backup",
     "actionLabel": "Configure Backup Plan",
     "badgeText": "Encrypted Storage",
@@ -1831,7 +1831,7 @@ export const services = [
       "firewall",
       "awareness"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Cybersecurity%20Solutions",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Cybersecurity%20Solutions",
     "portalName": "Fortinet & Sophos Security",
     "actionLabel": "Request Security Audit",
     "badgeText": "Firewall & EDR",
@@ -1853,7 +1853,7 @@ export const services = [
       "scaling",
       "domain"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Cloud%20Server%20Hosting",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Cloud%20Server%20Hosting",
     "portalName": "Cloud Infrastructure Desk",
     "actionLabel": "Deploy Cloud Server",
     "badgeText": "AWS / Azure Cloud",
@@ -1873,7 +1873,7 @@ export const services = [
       "workshop",
       "digital literacy"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Corporate%20IT%20Training",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Corporate%20IT%20Training",
     "portalName": "Corporate Skills Program",
     "actionLabel": "Book Training Session",
     "badgeText": "Enterprise Training",
@@ -1914,7 +1914,7 @@ export const services = [
       "print",
       "envelope"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Marriage%20Card%20Printing",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Marriage%20Card%20Printing",
     "portalName": "Luxury Invitation Press",
     "actionLabel": "View Card Catalog",
     "badgeText": "Gold Foil & Emboss",
@@ -1935,7 +1935,7 @@ export const services = [
       "standee",
       "stage"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Event%20Services",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Event%20Services",
     "portalName": "Milestone Logistics Desk",
     "actionLabel": "Inquire Event Planning",
     "badgeText": "Complete Setup",
@@ -1955,7 +1955,7 @@ export const services = [
       "shaadi",
       "profile"
     ],
-    "portalUrl": "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Matchmaking%20Assistance",
+    "portalUrl": "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Matchmaking%20Assistance",
     "portalName": "Verified Community Bureau",
     "actionLabel": "Consult Family Desk",
     "badgeText": "Confidential",
@@ -2146,21 +2146,21 @@ export const documentsChecklist = [
 ];
 
 export const company = {
-  "name": "Myra Computer Enterprises",
-  "legalName": "Myra Computer Enterprises",
+  "name": "Amayra Computers",
+  "legalName": "Amayra Computers",
   "tagline": "Government services, engineering and enterprise systems, from one counter.",
   "established": "2013",
   "address": {
-    "line1": "Shop 12, Sai Arcade",
-    "line2": "Fergusson College Road, Shivajinagar",
-    "city": "Pune",
+    "line1": "Jambut Bk",
+    "line2": "Tal. Sangamner, Dist. Ahmednagar",
+    "city": "Sangamner",
     "state": "Maharashtra",
-    "pincode": "411005",
+    "pincode": "422622",
     "country": "India"
   },
-  "phone": "+91 98765 43210",
-  "whatsapp": "+91 98765 43210",
-  "email": "contact@myracomputer.in",
+  "phone": "+91 97661 74974",
+  "whatsapp": "+91 97661 74974",
+  "email": "contact@amayracomputers.in",
   "hours": [
     {
       "days": "Monday – Friday",

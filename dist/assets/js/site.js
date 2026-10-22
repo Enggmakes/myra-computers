@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Myra Computer Enterprises — site behaviour
+   Amayra Computers — site behaviour
    Universal vanilla script (works on file:// and http://, zero dependencies).
    ========================================================================== */
 

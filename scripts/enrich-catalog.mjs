@@ -259,7 +259,7 @@ const PORTAL_METADATA = {
     isGov: true,
   },
   "pos-insurance": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20a%20quote%20for%20POS%20Insurance",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20a%20quote%20for%20POS%20Insurance",
     portalName: "Counter POS Insurance Desk",
     actionLabel: "Get Instant Policy Quote",
     badgeText: "IRDAI Registered",
@@ -289,7 +289,7 @@ const PORTAL_METADATA = {
     isGov: true,
   },
   "finance-pos": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20details%20for%20Merchant%20POS%20Finance",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20details%20for%20Merchant%20POS%20Finance",
     portalName: "Merchant POS Finance Desk",
     actionLabel: "Inquire POS Machine",
     badgeText: "Merchant POS",
@@ -305,7 +305,7 @@ const PORTAL_METADATA = {
 
   // ----------------------- print
   "printing": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20have%20a%20Print%20Job",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20have%20a%20Print%20Job",
     portalName: "Shivajinagar Document Room",
     actionLabel: "Send Print Job on WhatsApp",
     badgeText: "High-Speed Print",
@@ -319,42 +319,42 @@ const PORTAL_METADATA = {
     isGov: false,
   },
   "scanning": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Document%20Scanning%20and%20Digitisation",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Document%20Scanning%20and%20Digitisation",
     portalName: "High-Res OCR Scanning Desk",
     actionLabel: "Book Scanning & OCR",
     badgeText: "PDF / OCR Archive",
     isGov: false,
   },
   "lamination-binding": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Lamination%20and%20Binding",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Lamination%20and%20Binding",
     portalName: "Lamination & Spiral Desk",
     actionLabel: "Order Lamination / Binding",
     badgeText: "Instant Counter",
     isGov: false,
   },
   "typing-drafting": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Typing%20or%20Affidavit%20Drafting",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Typing%20or%20Affidavit%20Drafting",
     portalName: "Legal Typing & Affidavit Desk",
     actionLabel: "Draft Legal Document",
     badgeText: "English & Marathi",
     isGov: false,
   },
   "application-printing": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Online%20Form%20Printout",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Online%20Form%20Printout",
     portalName: "Application Print Desk",
     actionLabel: "Print Application Form",
     badgeText: "Color / B&W",
     isGov: false,
   },
   "id-card-printing": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20PVC%20Smart%20Card%20Printing",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20PVC%20Smart%20Card%20Printing",
     portalName: "PVC Smart Card Unit",
     actionLabel: "Order PVC Smart Card",
     badgeText: "Durable PVC",
     isGov: false,
   },
   "signage": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Signage%20and%20Flex",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Signage%20and%20Flex",
     portalName: "Signage & Display Print",
     actionLabel: "Request Signage Quote",
     badgeText: "Commercial Display",
@@ -377,7 +377,7 @@ const PORTAL_METADATA = {
     isGov: false,
   },
   "international-remittance": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20International%20Remittance%20Assistance",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20International%20Remittance%20Assistance",
     portalName: "Authorized Remittance Desk",
     actionLabel: "Inquire Forex Transfer",
     badgeText: "RBI Compliant",
@@ -398,7 +398,7 @@ const PORTAL_METADATA = {
     isGov: false,
   },
   "merchant-settlement": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Merchant%20Settlement%20Support",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Merchant%20Settlement%20Support",
     portalName: "Merchant POS Settlement",
     actionLabel: "POS Settlement Desk",
     badgeText: "Next-Day Credit",
@@ -421,14 +421,14 @@ const PORTAL_METADATA = {
     isGov: true,
   },
   "job-post": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20want%20to%20Post%20a%20Job%20Vacancy",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20want%20to%20Post%20a%20Job%20Vacancy",
     portalName: "Employer Posting Desk",
     actionLabel: "Post Job Vacancy",
     badgeText: "Pune & PCMC",
     isGov: false,
   },
   "staffing": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Staffing%20Solutions",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Staffing%20Solutions",
     portalName: "Pune Staffing Bureau",
     actionLabel: "Hire Verified Staff",
     badgeText: "Contract & Perm",
@@ -444,14 +444,14 @@ const PORTAL_METADATA = {
 
   // ----------------------- commerce
   "property-transactions": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20have%20a%20Property%20Rent%20or%20Sale%20Inquiry",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20have%20a%20Property%20Rent%20or%20Sale%20Inquiry",
     portalName: "Pune Property Desk",
     actionLabel: "List / Search Property",
     badgeText: "Verified Listings",
     isGov: false,
   },
   "engineering-supply": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Engineering%20Supplies",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Engineering%20Supplies",
     portalName: "All-India Industrial Supply",
     actionLabel: "Request Industrial Quote",
     badgeText: "B2B Procurement",
@@ -465,7 +465,7 @@ const PORTAL_METADATA = {
     isGov: true,
   },
   "vendor-sourcing": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Vendor%20Sourcing",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Vendor%20Sourcing",
     portalName: "Vendor Verification Desk",
     actionLabel: "Connect with Vendors",
     badgeText: "Pune Industrial",
@@ -495,7 +495,7 @@ const PORTAL_METADATA = {
     isGov: true,
   },
   "hotel-booking": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Hotel%20Booking%20Assistance",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Hotel%20Booking%20Assistance",
     portalName: "Hotel Desk Pune",
     actionLabel: "Book Verified Stay",
     badgeText: "Corporate & Leisure",
@@ -509,7 +509,7 @@ const PORTAL_METADATA = {
     isGov: true,
   },
   "forex": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Forex%20Exchange",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Forex%20Exchange",
     portalName: "Authorized Currency Bureau",
     actionLabel: "Get Live Forex Rates",
     badgeText: "RBI Authorized",
@@ -525,70 +525,70 @@ const PORTAL_METADATA = {
 
   // ----------------------- technology
   "hardware-supply": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Enterprise%20Hardware%20Quotation",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Enterprise%20Hardware%20Quotation",
     portalName: "OEM Enterprise Hardware",
     actionLabel: "Request Hardware Quote",
     badgeText: "HP / Dell / Lenovo",
     isGov: false,
   },
   "network-infrastructure": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Network%20Infrastructure%20Setup",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Network%20Infrastructure%20Setup",
     portalName: "Cisco & Ubiquiti Practice",
     actionLabel: "Schedule Network Audit",
     badgeText: "Structured Cabling",
     isGov: false,
   },
   "amc-maintenance": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20an%20AMC%20Maintenance%20Contract",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20an%20AMC%20Maintenance%20Contract",
     portalName: "Comprehensive AMC Desk",
     actionLabel: "Inquire AMC Contract",
     badgeText: "SLA Guaranteed",
     isGov: false,
   },
   "it-support": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20IT%20Support",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20IT%20Support",
     portalName: "Pune On-Site & Remote Desk",
     actionLabel: "Book IT Support Visit",
     badgeText: "Immediate Dispatch",
     isGov: false,
   },
   "software-licensing": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Software%20Licensing",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Software%20Licensing",
     portalName: "Authorized License Reseller",
     actionLabel: "Order Genuine Licenses",
     badgeText: "Microsoft / Tally",
     isGov: false,
   },
   "web-development": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Web%20Development",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Web%20Development",
     portalName: "Custom Engineering Practice",
     actionLabel: "Scope Web Project",
     badgeText: "Full-Stack Web",
     isGov: false,
   },
   "data-backup": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Data%20Backup%20Solutions",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Data%20Backup%20Solutions",
     portalName: "Hybrid Cloud Backup",
     actionLabel: "Configure Backup Plan",
     badgeText: "Encrypted Storage",
     isGov: false,
   },
   "cybersecurity": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Cybersecurity%20Solutions",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Cybersecurity%20Solutions",
     portalName: "Fortinet & Sophos Security",
     actionLabel: "Request Security Audit",
     badgeText: "Firewall & EDR",
     isGov: false,
   },
   "cloud-hosting": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Cloud%20Server%20Hosting",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Cloud%20Server%20Hosting",
     portalName: "Cloud Infrastructure Desk",
     actionLabel: "Deploy Cloud Server",
     badgeText: "AWS / Azure Cloud",
     isGov: false,
   },
   "it-training-corporate": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Corporate%20IT%20Training",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Corporate%20IT%20Training",
     portalName: "Corporate Skills Program",
     actionLabel: "Book Training Session",
     badgeText: "Enterprise Training",
@@ -604,21 +604,21 @@ const PORTAL_METADATA = {
     isGov: true,
   },
   "marriage-card-printing": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Marriage%20Card%20Printing",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Marriage%20Card%20Printing",
     portalName: "Luxury Invitation Press",
     actionLabel: "View Card Catalog",
     badgeText: "Gold Foil & Emboss",
     isGov: false,
   },
   "event-services": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Event%20Services",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Event%20Services",
     portalName: "Milestone Logistics Desk",
     actionLabel: "Inquire Event Planning",
     badgeText: "Complete Setup",
     isGov: false,
   },
   "matchmaking": {
-    portalUrl: "https://wa.me/919876543210?text=Hello%20Myra%20Computer,%20I%20need%20Matchmaking%20Assistance",
+    portalUrl: "https://wa.me/919766174974?text=Hello%20Amayra%20Computers,%20I%20need%20Matchmaking%20Assistance",
     portalName: "Verified Community Bureau",
     actionLabel: "Consult Family Desk",
     badgeText: "Confidential",
@@ -728,7 +728,7 @@ async function main() {
 
   const newServices = catalogModule.services.map((s) => {
     const meta = PORTAL_METADATA[s.id] || {
-      portalUrl: `https://wa.me/919876543210?text=${encodeURIComponent(`Hello Myra Computer, I need assistance with: ${s.name}`)}`,
+      portalUrl: `https://wa.me/919766174974?text=${encodeURIComponent(`Hello Amayra Computers, I need assistance with: ${s.name}`)}`,
       portalName: "Direct Counter Desk",
       actionLabel: `Inquire ${s.name}`,
       badgeText: "Counter Service",
@@ -868,7 +868,7 @@ async function main() {
   ];
 
   let code = `/**
- * Canonical service catalogue for Myra Computer Enterprises.
+ * Canonical service catalogue for Amayra Computers.
  * Enriched with direct Indian Government and official portal endpoints,
  * action labels, authentic badge types, and document verification checklists.
  */

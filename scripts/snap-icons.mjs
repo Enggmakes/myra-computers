@@ -64,6 +64,30 @@ async function snapIcons() {
     clip: { x: 0, y: 0, width: 390, height: 750 },
   });
 
+  // 5. Capture Contact Desk & Footer (desktop)
+  await page.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 2 });
+  const contactEl = await page.$('#contact');
+  if (contactEl) {
+    const box = await contactEl.boundingBox();
+    if (box) {
+      await page.screenshot({
+        path: resolve(ARTIFACTS, 'verified_contact.png'),
+        clip: { x: 0, y: box.y, width: 1440, height: Math.min(box.height, 800) },
+      });
+    }
+  }
+
+  const footerEl = await page.$('footer');
+  if (footerEl) {
+    const box = await footerEl.boundingBox();
+    if (box) {
+      await page.screenshot({
+        path: resolve(ARTIFACTS, 'verified_footer.png'),
+        clip: { x: 0, y: box.y, width: 1440, height: Math.min(box.height, 600) },
+      });
+    }
+  }
+
   console.log('Targeted icon screenshots saved successfully!');
   await browser.close();
 }

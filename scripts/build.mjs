@@ -114,7 +114,7 @@ const faq = [
   },
   {
     q: "Which areas do you serve?",
-    a: "The counter in Shivajinagar serves walk-in clients from across Pune. Engineering and support work is delivered on site across the metropolitan area, and remotely elsewhere in India.",
+    a: "The counter in Jambut Bk, Sangamner serves walk-in clients from across the region. Engineering and support work is delivered on site, and remotely elsewhere in India.",
   },
 ];
 
@@ -283,9 +283,9 @@ function serviceTile(s) {
     <div class="flex items-center justify-between text-[0.75rem] text-slate-500 pt-1 border-t border-slate-100 gap-2">
       <span class="inline-flex items-center gap-1.5 font-medium text-slate-600 truncate min-w-0">
         <span class="h-1.5 w-1.5 rounded-full flex-none ${s.isGov ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}"></span>
-        <span class="truncate">${esc(s.portalName || 'Shivajinagar Desk')}</span>
+        <span class="truncate">${esc(s.portalName || 'Sangamner Desk')}</span>
       </span>
-      <a href="https://wa.me/919876543210?text=${encodeURIComponent(`Hello Myra Computer, I need assistance at the counter with: ${s.name}`)}"
+      <a href="https://wa.me/919766174974?text=${encodeURIComponent(`Hello Amayra Computers, I need assistance at the counter with: ${s.name}`)}"
          target="_blank" rel="noopener noreferrer"
          class="inline-flex items-center gap-1 text-slate-500 hover:text-emerald-700 font-medium transition-colors flex-none"
          title="Need help? Ask counter desk on WhatsApp"
