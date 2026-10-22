@@ -597,7 +597,10 @@ const cssPath = resolve(ROOT, "assets/css/site.css");
 const jsPath = resolve(ROOT, "assets/js/site.js");
 const cssContent = await readFile(cssPath, "utf8");
 const jsContent = await readFile(jsPath, "utf8");
-const inlinedCss = cssContent.replace(/\.\.\/fonts\//g, "/assets/fonts/");
+const inlinedCss = cssContent
+  .replace(/\.\.\/fonts\//g, "/assets/fonts/")
+  .replace(/url\(['"]?\.\.\/\.\.\/hero_vertical\.png['"]?\)/g, "url('hero_vertical.png')")
+  .replace(/url\(['"]?\.\.\/\.\.\/hero\.png['"]?\)/g, "url('hero.png')");
 
 const slots = {
   INLINE_CSS: `<style id="app-styles">\n${inlinedCss}\n</style>`,
