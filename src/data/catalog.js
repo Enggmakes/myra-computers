@@ -82,10 +82,10 @@ export const divisions = [
   },
   {
     "id": "payments",
-    "name": "Money Transfer & Payments",
-    "shortName": "Payments",
+    "name": "Money Transfer & Payments — Central Mini Bank",
+    "shortName": "Central Mini Bank",
     "icon": "wallet",
-    "blurb": "Counter and digital transfers, deposits and withdrawals, and merchant settlement.",
+    "blurb": "Authorised Central Bank of India Customer Service Point (CSP) & Mini Bank counter. Cash deposits, withdrawals, AePS biometric micro-ATM, NEFT/IMPS transfers, and merchant settlement.",
     "theme": {
       "colorName": "green",
       "colorHex": "#15803d",
@@ -1210,18 +1210,19 @@ export const services = [
     "name": "Money Transfer",
     "sourceRef": "Money Transfer",
     "icon": "send",
-    "desc": "Counter-based transfer of funds with an acknowledgement slip issued on the spot.",
-    "audience": "Anyone sending money to someone who may not use a banking app",
+    "desc": "Central Bank of India counter-based transfer of funds with an instant acknowledgement slip issued on the spot.",
+    "audience": "Anyone sending money to any bank account across India",
     "keywords": [
       "transfer",
       "remittance",
       "counter",
-      "send money"
+      "send money",
+      "central bank"
     ],
-    "portalUrl": "https://www.npci.org.in/",
-    "portalName": "NPCI Domestic Money Transfer",
+    "portalUrl": "https://www.centralbankofindia.co.in/",
+    "portalName": "Central Bank CSP / NPCI Money Transfer",
     "actionLabel": "Domestic Transfer Desk",
-    "badgeText": "IMPS / NEFT 24x7",
+    "badgeText": "Central Bank CSP",
     "isGov": false
   },
   {
@@ -1292,18 +1293,20 @@ export const services = [
     "name": "Cash Deposit & Withdrawal",
     "expanded": true,
     "icon": "landmark",
-    "desc": "Bank deposits and withdrawals for customers without net banking access.",
-    "audience": "Seniors, daily-wage workers and cash-dependent households",
+    "desc": "Central Bank of India & all-bank cash deposit, AePS biometric withdrawal, and account balance inquiry.",
+    "audience": "Seniors, account holders and cash-dependent households",
     "keywords": [
       "deposit",
       "withdrawal",
       "cash",
-      "counter"
+      "counter",
+      "central bank",
+      "aeps"
     ],
-    "portalUrl": "https://www.npci.org.in/what-we-do/aeps/product-overview",
-    "portalName": "AePS Aadhaar Micro-ATM",
-    "actionLabel": "AePS Cash Withdrawal Desk",
-    "badgeText": "Aadhaar Biometric",
+    "portalUrl": "https://www.centralbankofindia.co.in/",
+    "portalName": "Central Bank Mini Branch / AePS Micro-ATM",
+    "actionLabel": "Cash & AePS Counter",
+    "badgeText": "Central Bank & AePS",
     "isGov": false
   },
   {

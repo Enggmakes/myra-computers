@@ -33,6 +33,13 @@ const ico = (name, cls = "icon") => {
   return `<svg class="${cls}" width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${body}</svg>`;
 };
 
+const toBase64 = async (path, mime) => {
+  const buf = await readFile(path);
+  return `data:${mime};base64,${buf.toString("base64")}`;
+};
+
+const centralLogoB64 = await toBase64(resolve(ROOT, "assets/img/central.png"), "image/png");
+
 /* ------------------------------------------------------------------ */
 /* Static authored content                                             */
 /* ------------------------------------------------------------------ */
@@ -173,12 +180,13 @@ function megaHours() {
 
 function mobileDivisions() {
   const items = divisions
-    .map(
-      (d) =>
-        `<li><a href="#${d.id}" class="flex items-center gap-2 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/20 px-3 py-2.5 font-display text-[0.8125rem] font-medium text-[#F5F0E3] transition-all hover:border-[#D6B36A] hover:text-[#D6B36A]" data-mobile-nav-close><span class="text-[#D6B36A] flex-none">${ico(
-          d.icon
-        )}</span><span class="truncate">${esc(d.shortName)}</span></a></li>`
-    );
+    .map((d) => {
+      const isPayments = d.id === "payments";
+      const iconHtml = isPayments
+        ? `<img src="${centralLogoB64}" alt="" class="h-4 w-4 object-contain inline-block flex-none" />`
+        : ico(d.icon);
+      return `<li><a href="#${d.id}" class="flex items-center gap-2 rounded-lg bg-[#0c2b27] border border-[#8FB7AE]/20 px-3 py-2.5 font-display text-[0.8125rem] font-medium text-[#F5F0E3] transition-all hover:border-[#D6B36A] hover:text-[#D6B36A]" data-mobile-nav-close><span class="text-[#D6B36A] flex-none">${iconHtml}</span><span class="truncate">${esc(d.shortName)}</span></a></li>`;
+    });
   items.push(
     `<li><a href="#services" class="flex items-center justify-between rounded-lg bg-[#D6B36A]/15 border border-[#D6B36A]/40 px-3 py-2.5 font-display text-[0.8125rem] font-bold text-[#D6B36A] transition-all hover:bg-[#D6B36A] hover:text-[#071C19]" data-mobile-nav-close><span>All Services</span><span class="text-xs">86 →</span></a></li>`
   );
@@ -222,10 +230,20 @@ function divisionStrip() {
     .map((d) => {
       const count = services.filter((s) => s.division === d.id).length;
       const theme = d.theme || {};
+      const isPayments = d.id === "payments";
+      const iconHtml = isPayments
+        ? `<img src="${centralLogoB64}" alt="Central Bank of India" class="h-6 w-6 object-contain" />`
+        : ico(d.icon, "icon icon-lg");
+      const badgeCls = isPayments
+        ? "bg-white border border-red-200 shadow-xs"
+        : (theme.badgeClass || "bg-slate-100 text-slate-700");
+      const titleHtml = isPayments
+        ? `Money Transfer &amp; Payments<span class="block text-[0.75rem] text-red-600 font-bold tracking-tight">Central Mini Bank</span>`
+        : esc(d.name);
       return `<li>
         <a href="#${d.id}" class="group flex flex-col gap-2 p-3.5 rounded-lg border border-transparent hover:border-slate-200 hover:bg-white hover:shadow-sm transition-all">
-          <span class="grid h-10 w-10 place-items-center rounded-lg ${theme.badgeClass || 'bg-slate-100 text-slate-700'} transition-transform group-hover:scale-110">${ico(d.icon, "icon icon-lg")}</span>
-          <span class="font-display text-[0.9375rem] font-bold leading-snug text-ink-900 group-hover:text-signal-600">${esc(d.name)}</span>
+          <span class="grid h-10 w-10 place-items-center rounded-lg ${badgeCls} transition-transform group-hover:scale-110">${iconHtml}</span>
+          <span class="font-display text-[0.9375rem] font-bold leading-snug text-ink-900 group-hover:text-signal-600">${titleHtml}</span>
           <span class="nums text-[0.8125rem] font-medium text-slate-500">${count} service${
             count === 1 ? "" : "s"
           }</span>
@@ -300,18 +318,37 @@ function serviceTile(s) {
 
 function serviceIndex() {
   return servicesByDivision
-    .map(
-      (d) => `<section id="${d.id}" class="scroll-mt-28" data-division-group="${d.id}">
-  <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b-2 border-slate-200 pb-4">
-    <div class="flex items-center gap-3">
-      <span class="grid h-10 w-10 place-items-center rounded-lg ${d.theme?.badgeClass || 'bg-slate-100 text-slate-800'}">${ico(
-        d.icon,
-        "icon"
-      )}</span>
-      <div>
-        <h3 class="text-[1.35rem] font-bold tracking-tight text-ink-950">${esc(d.name)}</h3>
-        <span class="text-[0.75rem] font-semibold uppercase tracking-wider text-slate-500">${esc(d.shortName)} Division</span>
-      </div>
+    .map((d) => {
+      const isPayments = d.id === "payments";
+
+      const iconContainer = isPayments
+        ? `<span class="grid h-12 w-12 place-items-center rounded-xl bg-white border border-red-200 p-1.5 shadow-sm flex-none">
+            <img src="${centralLogoB64}" alt="Central Bank of India" class="h-full w-full object-contain" />
+          </span>`
+        : `<span class="grid h-10 w-10 place-items-center rounded-lg ${d.theme?.badgeClass || 'bg-slate-100 text-slate-800'} flex-none">${ico(
+            d.icon,
+            "icon"
+          )}</span>`;
+
+      const headerContent = isPayments
+        ? `<div>
+            <h3 class="text-[1.35rem] sm:text-[1.5rem] font-bold tracking-tight text-ink-950 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span>Money Transfer &amp; Payments</span>
+              <span class="text-slate-300 font-light hidden sm:inline">|</span>
+              <span class="text-red-700">Central Mini Bank</span>
+            </h3>
+            <span class="text-[0.75rem] font-semibold uppercase tracking-wider text-slate-500">Payments Division</span>
+          </div>`
+        : `<div>
+            <h3 class="text-[1.35rem] font-bold tracking-tight text-ink-950">${esc(d.name)}</h3>
+            <span class="text-[0.75rem] font-semibold uppercase tracking-wider text-slate-500">${esc(d.shortName)} Division</span>
+          </div>`;
+
+      return `<section id="${d.id}" class="scroll-mt-28" data-division-group="${d.id}">
+  <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b-2 border-slate-200 pb-4">
+    <div class="flex items-center gap-3.5">
+      ${iconContainer}
+      ${headerContent}
     </div>
     <div class="flex items-center gap-3">
       <span class="rounded-full bg-slate-100 px-3 py-1 font-display text-[0.8125rem] font-bold text-slate-700">${d.services.length} service${
@@ -324,8 +361,8 @@ function serviceIndex() {
   <div class="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">${d.services
     .map(serviceTile)
     .join("\n")}</div>
-</section>`
-    )
+</section>`;
+    })
     .join("\n");
 }
 
@@ -597,11 +634,6 @@ const cssPath = resolve(ROOT, "assets/css/site.css");
 const jsPath = resolve(ROOT, "assets/js/site.js");
 const cssContent = await readFile(cssPath, "utf8");
 const jsContent = await readFile(jsPath, "utf8");
-
-const toBase64 = async (path, mime) => {
-  const buf = await readFile(path);
-  return `data:${mime};base64,${buf.toString("base64")}`;
-};
 
 const heroVerticalB64 = await toBase64(resolve(ROOT, "hero_vertical.webp"), "image/webp");
 const heroB64 = await toBase64(resolve(ROOT, "hero.webp"), "image/webp");
